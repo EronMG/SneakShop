@@ -35,7 +35,7 @@ const MainScreen: React.FC<MainScreenProps> = () => {
         <Image src={group2} rotate={180} flipVertical className="rotate-180" />
       </div>
       <div className="flex flex-col">
-        <h1 className="h1 w-[350px]">One button to stable all your funds</h1>
+        <h1 className="h1 w-[320px]">One button to stable all your funds</h1>
         <p className="p top-[40px] relative flex justify-center">
           (Connect your wallet to continue)
         </p>
