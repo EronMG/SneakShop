@@ -12,9 +12,17 @@ export const theme = {
             backdrop: 'rgba(64, 63, 61, 0.80)',
             brdlight: '#C1B6AD',
             brddark: '#665F55',
+            rgba: 'rgba(255, 255, 255, 0.60)',
+            rgbablack: 'rgba(0, 0, 0, 0.60)',
+            rgbalow: 'rgba(0, 0, 0, 0.30)',
         },
         fontFamily: {
             mono: ["Space Mono", "monospace"],
+            gil: ['Gilroy'],
+            gilThin: ['GilroyThin'],
+            gilSemi: ['GilroySemi'],
+            gilRegular: ['GilroyRegular'],
+            gilMedium: ['GilroyMedium'],
         },
     },
     screens: {

@@ -1,0 +1,235 @@
+import React, { useCallback, useContext, useState } from "react";
+import Arrow from "../assets/Arrow.svg";
+import Search from "../assets/Search.svg";
+import "../index.css";
+import Slider from "antd/es/slider";
+import { NetworkContext } from "../context/SelectedId";
+import { SliderContext } from "../context/Slider";
+
+interface CryptoItem {
+  //интрефейс
+  id: string;
+  icon: string;
+  name: string;
+  cost: number;
+}
+interface SliderValues {
+  [key: string]: number;
+}
+
+const Portfolio: React.FC = () => {
+  const context = useContext(NetworkContext);
+  const contextSlider = useContext(SliderContext);
+  if (!context) {
+    throw new Error("NetworkContext not found");
+  }
+  if (!contextSlider) {
+    throw new Error("SliderContext not found");
+  }
+  const { selectedId } = context;
+  //инфа с нашими криптовалютами
+  const cryptArr: CryptoItem[] = [
+    {
+      id: "1",
+      icon: require("../assets/image5.svg").default,
+      name: "Bitcoin (BTC)",
+      cost: 0.0201,
+    },
+    {
+      id: "2",
+      icon: require("../assets/image12.svg").default,
+      name: "Etherium (ETH)",
+      cost: 0.1472,
+    },
+    {
+      id: "3",
+      icon: require("../assets/image15.svg").default,
+      name: "BNB (BNB)",
+      cost: 1.001,
+    },
+    {
+      id: "4",
+      icon: require("../assets/Group31.svg").default,
+      name: "Solana (SOL)",
+      cost: 2.35,
+    },
+    {
+      id: "5",
+      icon: require("../assets/Group32.svg").default,
+      name: "XRP (XRP)",
+      cost: 78.687,
+    },
+    {
+      id: "6",
+      icon: require("../assets/Group33.svg").default,
+      name: "Cardano (ADA)",
+      cost: 15.42,
+    },
+    {
+      id: "6",
+      icon: require("../assets/Group33.svg").default,
+      name: "Cardano (ADA)",
+      cost: 15.42,
+    },
+    {
+      id: "4",
+      icon: require("../assets/Group31.svg").default,
+      name: "Solana (SOL)",
+      cost: 2.35,
+    },
+    {
+      id: "6",
+      icon: require("../assets/Group33.svg").default,
+      name: "Cardano (ADA)",
+      cost: 15.42,
+    },
+    {
+      id: "2",
+      icon: require("../assets/image12.svg").default,
+      name: "Etherium (ETH)",
+      cost: 0.1472,
+    },
+    {
+      id: "3",
+      icon: require("../assets/image15.svg").default,
+      name: "BNB (BNB)",
+      cost: 1.001,
+    },
+    {
+      id: "6",
+      icon: require("../assets/Group33.svg").default,
+      name: "Cardano (ADA)",
+      cost: 15.42,
+    },
+  ];
+
+  const [sliderValues, setSliderValues] = useState<SliderValues>(
+    cryptArr.reduce((acc, item) => ({ ...acc, [item.id]: 0 }), {})
+  );
+
+  const { setAnySliderAboveZero } = contextSlider;
+
+  const onSliderChange = useCallback(
+    (value: number, id: string) => {
+      setSliderValues((prev) => {
+        const updatedValues = { ...prev, [id]: value };
+
+        // Проверяем, есть ли слайдер с значением выше 0
+        const isAboveZero = Object.values(updatedValues).some((val) => val > 0);
+        setAnySliderAboveZero(isAboveZero);
+
+        return updatedValues;
+      });
+    },
+    [setAnySliderAboveZero]
+  );
+
+  const getDisplayedCost = useCallback(
+    //callBack  для кеширования
+    (cost: number, id: string) => {
+      const value = (cost * sliderValues[id]) / 100;
+      return sliderValues[id] === 0 ? "0" : value.toFixed(6);
+    },
+    [sliderValues]
+  );
+
+  return (
+    <div>
+      {selectedId ? (
+        <div className="pt-[20px] pr-[15px] pl-[20px] flex flex-col gap-[32px]">
+          <div className="flex gap-[24.5px] items-center">
+            <h2 className="text-white font-gilMedium leading-[45px] text-[50px] uppercase">
+              Portfolio
+            </h2>
+            <img src={Arrow} alt="" />
+          </div>
+          <div className="flex flex-col gap-[20px]">
+            <div className="flex gap-[15px] items-end">
+              <div className="flex gap-[7.32px] border-b-[1px] border-rgba w-[625px]">
+                <img src={Search} alt="" className=" rotate-[-45]" />
+                <input
+                  type="search"
+                  name="search"
+                  id="search"
+                  placeholder="Search"
+                  className=" bg-transparent outline-none text-rgba w-full"
+                  style={{
+                    WebkitAppearance: "none",
+                    appearance: "none",
+                    paddingRight: "0.5em",
+                  }}
+                />
+              </div>
+              <span className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2">
+                All to zero
+              </span>
+              <span className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2">
+                All to max
+              </span>
+            </div>
+            {cryptArr.map((item) => (
+              <div
+                key={item.id}
+                className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[80px]"
+              >
+                <div className="flex items-center gap-[10px]">
+                  <img src={item.icon} alt="" />
+                  <div className="flex flex-col gap-[8px] justify-center">
+                    <h2 className="font-mono font-[400] text-rgba text-[12px] leading-[12.028px] relative top-[7.5px] w-[126px]">
+                      {item.name}
+                    </h2>
+                    <span className="font-gilMedium leading-[40px] text-[30px] text-white uppercase">
+                      {item.cost}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex gap-[33px] ">
+                  <div className="flex gap-[26px] items-center">
+                    <Slider
+                      //Слайдеры наши
+                      value={sliderValues[item.id]}
+                      onChange={(value) => onSliderChange(value, item.id)}
+                      className="sfill w-[240px] rounded-[30px] m-0 relative top-[20px]"
+                      marks={{
+                        0: "0%",
+                        25: "25%",
+                        50: "50%",
+                        75: "75%",
+                        100: "100%",
+                      }}
+                      tooltipVisible={false}
+                    />
+                    <span className="font-mono font-[400] text-[16px] leading-[16px] text-white underline underline-offset-2 pt-[14px]">
+                      max
+                    </span>
+                  </div>
+                  <p className="font-gilMedium text-[30px] leading-[40px] text-rgba uppercase flex items-center">
+                    {" "}
+                    {getDisplayedCost(item.cost, item.id)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="p-[20px]">
+          <div className="flex gap-[24.5px]">
+            {" "}
+            <h2 className="text-white font-gilMedium leading-[45px] text-[50px] uppercase">
+              Portfolio
+            </h2>
+            <img src={Arrow} alt="" />
+          </div>
+          <div className="h-[520px] flex items-center justify-center w-[800px]">
+            <p className="font-mono font-[400] text-[16px] leading-[16px] underline underline-offset-2 text-rgba">
+              (Choose any available network to continue)
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Portfolio;

@@ -1,12 +1,17 @@
-import MainScreen from "./components/MainScreen";
-import Nav from "./components/Nav";
+import { Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import Main from "./Pages/Main";
+import Profile from "./Pages/Profile";
+import React from "react";
 
 function App() {
   return (
-    <div>
-      <Nav />
-      <MainScreen />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
