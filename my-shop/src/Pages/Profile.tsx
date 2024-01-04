@@ -9,6 +9,7 @@ import { NetworkProvider } from "../context/SelectedId";
 import Transfer from "../components/Transfer";
 import { Link } from "react-router-dom";
 import { SliderProvider } from "../context/Slider";
+import Funds from "../components/Funds";
 const Nav = () => {
   return (
     <div className="flex pt-[21px] pb-[19px] justify-between px-[30px]">
@@ -33,12 +34,16 @@ const Profile = () => {
       <NetworkProvider>
         <Nav />
         <div className="px-[15px] flex flex-col gap-[15px] ">
-          <Wallet
-            walletTitle={"WALLET:"}
-            walletAddress={"0xE07eA.....519BF"}
-            changeWalletText={"Change main wallet"}
-            addWalletText={"Add wallet"}
-          />
+          <div className="flex justify-between">
+            {" "}
+            <Wallet
+              walletTitle={"WALLET:"}
+              walletAddress={"0xE07eA.....519BF"}
+              changeWalletText={"Change main wallet"}
+              addWalletText={"Add wallet"}
+            />
+            <Funds />
+          </div>
           <Networks netTitle={"networks"} />
           <div className="fillport flex justify-between rounded-[30px] min-h-[648px]">
             <Portfolio />

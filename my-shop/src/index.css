@@ -113,3 +113,82 @@ text-transform: uppercase;
 .fillTrans{
   background:linear-gradient(241deg, #E9E9E9 15.17%, #BEBEBE 88.46%);
 }
+.fillgraph{
+  background:linear-gradient(241deg, #3E3E3E 15.17%, #252525 88.46%);
+}
+.main div{
+  height:7.351px;
+  background:linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0.00) 66.23%);
+}
+.block1{
+  width:83px;
+}
+.block2{
+  width:85px;
+}
+.block3{
+  width:87.5px;
+}
+.block4{
+  width:96px;
+}
+.block5{
+  width:105px;
+}
+.block6{
+  width:115px;
+}
+.block7{
+  width:122px;
+}
+.block8{
+  width:132px;
+}
+.block9{
+  width:140px;
+}
+.block10{
+  width:151px;
+}
+.block11{
+  width:163px;
+}
+.block12{
+  width:176px;
+}
+.block13{
+  width:203px;
+}
+.block14{
+  width:218px;
+}
+.block15{
+  width:237px;
+}
+.block16{
+  width:258px;
+}
+.block17{
+  width:283px;
+}
+.block18{
+  width:308px;
+}
+.block19{
+  width:338px;
+}
+.block20{
+  width:373px;
+}
+.block21{
+  width:418px;
+}
+.block22{
+  width:476px;
+}
+.block23{
+  width:545px;
+}
+.block24{
+  width:373px;
+}

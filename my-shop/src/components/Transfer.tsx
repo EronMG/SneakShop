@@ -6,6 +6,7 @@ import "../index.css";
 import ArrowBlack from "../assets/ArrowBlack.svg";
 import { SliderContext } from "../context/Slider";
 import FullLogo from "../assets/FullLogo.svg";
+import Modal from "./Modal";
 
 const Transfer = () => {
   const networkContext = useContext(NetworkContext);
@@ -26,6 +27,12 @@ const Transfer = () => {
     firstImgOpacity: 1,
     secondImgOpacity: 0,
   });
+
+  function handleButtonClick() {
+    if (isAnySliderAboveZero) {
+      openModal();
+    }
+  }
 
   useEffect(() => {
     setOpacityState({
@@ -50,6 +57,13 @@ const Transfer = () => {
     transition: "opacity 700ms ease-in-out",
     position: "absolute",
   };
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <div
@@ -110,7 +124,9 @@ const Transfer = () => {
               Add addres
             </span>
             <button
+              onClick={handleButtonClick}
               style={buttonStyle}
+              disabled={!isAnySliderAboveZero}
               className="relative bg-rgbalow w-full rounded-[30px] flex items-center justify-center py-[34.5px] h-[115px]"
             >
               <img
@@ -126,6 +142,13 @@ const Transfer = () => {
                 alt="logo"
               />
             </button>
+            <Modal
+              isOpen={modalIsOpen}
+              contentLabel="Example Modal"
+              onRequestClose={closeModal}
+            >
+              <p>werqwer</p>
+            </Modal>
           </div>
         </div>
       ) : (

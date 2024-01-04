@@ -1,38 +1,61 @@
 import React from "react";
-import group1 from "../assets/Vector25.png";
-import group2 from "../assets/Group2.png";
 import "../index.css";
 
 interface MainScreenProps {}
 
-interface ImageProps {
-  //Моя типизация
-  src: string;
-  rotate?: number;
-  flipVertical?: boolean;
-  className: string;
-}
-
-const Image: React.FC<ImageProps> = ({
-  //компонент моего image
-  src,
-  className = "",
-}) => {
-  return <img src={src} alt="" className={className} />;
-};
-
 const MainScreen: React.FC<MainScreenProps> = () => {
   return (
     <div className="flex justify-between items-center">
-      <div className="flex flex-col items-start gap-[10px]">
-        <Image
-          src={group2}
-          rotate={180}
-          flipVertical
-          className="rotate-180 scale-y-[-1]"
-        />
-        <Image src={group1} className="rotate-180 " />
-        <Image src={group2} rotate={180} flipVertical className="rotate-180" />
+      <div className="main flex flex-col items-start gap-[10px]">
+        <div className="block1"></div>
+        <div className="block1"></div>
+        <div className="block1"></div>
+        <div className="block2"></div>
+        <div className="block3"></div>
+        <div className="block4"></div>
+        <div className="block5"></div>
+        <div className="block6"></div>
+        <div className="block7"></div>
+        <div className="block8"></div>
+        <div className="block9"></div>
+        <div className="block10"></div>
+        <div className="block11"></div>
+        <div className="block12"></div>
+        <div className="block13"></div>
+        <div className="block14"></div>
+        <div className="block15"></div>
+        <div className="block16"></div>
+        <div className="block17"></div>
+        <div className="block18"></div>
+        <div className="block19"></div>
+        <div className="block20"></div>
+        <div className="block21"></div>
+        <div className="block22"></div>
+        <div className="block23"></div>
+        <div className="block22"></div>
+        <div className="block21"></div>
+        <div className="block20"></div>
+        <div className="block19"></div>
+        <div className="block18"></div>
+        <div className="block17"></div>
+        <div className="block16"></div>
+        <div className="block15"></div>
+        <div className="block14"></div>
+        <div className="block13"></div>
+        <div className="block12"></div>
+        <div className="block11"></div>
+        <div className="block10"></div>
+        <div className="block9"></div>
+        <div className="block8"></div>
+        <div className="block7"></div>
+        <div className="block6"></div>
+        <div className="block5"></div>
+        <div className="block4"></div>
+        <div className="block3"></div>
+        <div className="block2"></div>
+        <div className="block1"></div>
+        <div className="block1"></div>
+        <div className="block1"></div>
       </div>
       <div className="flex flex-col">
         <h1 className="h1 w-[320px]">One button to stable all your funds</h1>
@@ -40,10 +63,56 @@ const MainScreen: React.FC<MainScreenProps> = () => {
           (Connect your wallet to continue)
         </p>
       </div>
-      <div className="flex flex-col items-end gap-[10px]">
-        <Image src={group2} className={""} />
-        <Image src={group1} flipVertical className={""} />
-        <Image src={group2} rotate={180} className="rotate-180 scale-x-[-1]" />
+      <div className="main flex flex-col items-start gap-[10px] rotate-180">
+        <div className="block1"></div>
+        <div className="block1"></div>
+        <div className="block1"></div>
+        <div className="block2"></div>
+        <div className="block3"></div>
+        <div className="block4"></div>
+        <div className="block5"></div>
+        <div className="block6"></div>
+        <div className="block7"></div>
+        <div className="block8"></div>
+        <div className="block9"></div>
+        <div className="block10"></div>
+        <div className="block11"></div>
+        <div className="block12"></div>
+        <div className="block13"></div>
+        <div className="block14"></div>
+        <div className="block15"></div>
+        <div className="block16"></div>
+        <div className="block17"></div>
+        <div className="block18"></div>
+        <div className="block19"></div>
+        <div className="block20"></div>
+        <div className="block21"></div>
+        <div className="block22"></div>
+        <div className="block23"></div>
+        <div className="block22"></div>
+        <div className="block21"></div>
+        <div className="block20"></div>
+        <div className="block19"></div>
+        <div className="block18"></div>
+        <div className="block17"></div>
+        <div className="block16"></div>
+        <div className="block15"></div>
+        <div className="block14"></div>
+        <div className="block13"></div>
+        <div className="block12"></div>
+        <div className="block11"></div>
+        <div className="block10"></div>
+        <div className="block9"></div>
+        <div className="block8"></div>
+        <div className="block7"></div>
+        <div className="block6"></div>
+        <div className="block5"></div>
+        <div className="block4"></div>
+        <div className="block3"></div>
+        <div className="block2"></div>
+        <div className="block1"></div>
+        <div className="block1"></div>
+        <div className="block1"></div>
       </div>
     </div>
   );
