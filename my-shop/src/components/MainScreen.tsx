@@ -5,7 +5,7 @@ interface MainScreenProps {}
 
 const MainScreen: React.FC<MainScreenProps> = () => {
   return (
-    <div className="flex justify-between items-center h-[90vh]">
+    <div className="flex justify-between items-center">
       <div className="main flex flex-col items-start gap-[10px]">
         <div className="block1"></div>
         <div className="block1"></div>
