@@ -7,6 +7,8 @@ import ArrowBlack from "../assets/ArrowBlack.svg";
 import { SliderContext } from "../context/Slider";
 import FullLogo from "../assets/FullLogo.svg";
 import Modal from "./Modal";
+import btc from "../assets/image5.svg";
+import bnb from "../assets/image15.svg";
 
 const Transfer = () => {
   const networkContext = useContext(NetworkContext);
@@ -147,7 +149,89 @@ const Transfer = () => {
               contentLabel="Example Modal"
               onRequestClose={closeModal}
             >
-              <p>werqwer</p>
+              <div className="p-[15px] flex flex-col gap-[50px]">
+                <h2 className="font-gilMedium text-[50px] leading-[45px] text-black uppercase pt-[5px] pl-[5px]">
+                  confirm swap
+                </h2>
+                <div className="flex flex-col gap-[20px] pl-[5px]">
+                  <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                    (You pay)
+                  </span>
+                  <div className="flex flex-col gap-[10px]">
+                    <div className="flex gap-[10px] items-center">
+                      <img src={btc} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        0.769725 BTC
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400] ">
+                        ($32,103.4979)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-[20px] pl-[4px]">
+                  <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                    (You receive)
+                  </span>
+                  <div className="flex gap-[15px] items-center">
+                    <div className="text-black bg-white w-[40px] h-[40px] rounded-full flex items-center justify-center text-[25px]">
+                      $
+                    </div>
+                    <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                      37,748.2794
+                    </p>
+                  </div>
+                  <div className="flex items-end  gap-[23px] pt-[13px]">
+                    <div className="h-[1px] bg-black w-[412px]" />
+                    <p className="font-mono font-[400] text-black text-[16px] leading-[16px] underline underline-offset-1">
+                      Show more
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-[15px] pt-[10px]">
+                    <div className="flex justify-between pl-[0px]">
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        (Rate)
+                      </span>
+                      <div className="flex flex-col items-end gap-[10px]">
+                        <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          1 BTC = $41,732.27{" "}
+                        </p>
+                        <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          1 BNB = $229.66{" "}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex justify-between pl-[0px]">
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        (Fee)
+                      </span>
+                      <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        $0{" "}
+                      </p>
+                    </div>
+                    <div className="flex justify-between pl-[0px]">
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        (Network cost)
+                      </span>
+                      <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        $22.5{" "}
+                      </p>
+                    </div>
+                    <button className="text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-center justify-center py-[46px] w-[534px] rounded-[30px]">
+                      confirm swap
+                    </button>
+                  </div>
+                </div>
+              </div>
             </Modal>
           </div>
         </div>

@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({
       contentLabel={contentLabel}
       style={{
         overlay: {
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
         },
         content: {
           top: "50%",
@@ -30,9 +30,9 @@ const Modal: React.FC<ModalProps> = ({
           bottom: "auto",
           marginRight: "-50%",
           transform: "translate(-50%, -50%)",
-          padding: "20px",
-          borderRadius: "10px",
-          maxWidth: "500px",
+          padding: "0",
+          borderRadius: "30px",
+          maxWidth: "564px",
           width: "100%",
           background: "linear-gradient(241deg, #E9E9E9 15.17%, #BEBEBE 88.46%)",
         },
