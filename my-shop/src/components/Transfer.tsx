@@ -77,7 +77,7 @@ const Transfer = () => {
     <div
       className={`${
         selectedId ? "fillTrans" : "bg-white"
-      } rounded-[30px] w-[564px] h-fit`}
+      } rounded-[30px] w-[564px] ${!isExpanded ? "h-[648px]" : "h-fit"}`}
     >
       {selectedId ? (
         <div className="p-[15px] flex flex-col gap-[29px]">
