@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "../index.css";
 import { NetworkContext } from "../context/SelectedId";
 
@@ -14,7 +14,7 @@ interface NetworksProps {
   netTitle: string;
 }
 
-const networkData: Network[] = [
+export const networkData: Network[] = [
   {
     id: "1",
     icon: require("../assets/image12.svg").default,

@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useState } from "react";
 import Arrow from "../assets/Arrow.svg";
 import Search from "../assets/Search.svg";
 import "../index.css";
-import Slider from "antd/es/slider";
+import { Slider } from "antd";
 import { NetworkContext } from "../context/SelectedId";
 import { SliderContext } from "../context/Slider";
 
@@ -128,10 +128,38 @@ const Portfolio: React.FC = () => {
     //callBack  для кеширования
     (cost: number, id: string) => {
       const value = (cost * sliderValues[id]) / 100;
-      return sliderValues[id] === 0 ? "0" : value.toFixed(6);
+      return sliderValues[id] === 0 ? "0" : value.toFixed(4);
     },
     [sliderValues]
   );
+
+  const maxSliderValue = 100;
+
+  const handleSpanClick = (id: string) => {
+    // Устанавливаем максимальное значение для конкретного слайдера
+    onSliderChange(maxSliderValue, id);
+  };
+  const handleAllToMaxClick = () => {
+    // Устанавливаем максимальное значение для всех слайдеров
+    const updatedValues: SliderValues = {};
+    cryptArr.forEach((item) => {
+      updatedValues[item.id] = maxSliderValue;
+    });
+
+    setSliderValues(updatedValues);
+    setAnySliderAboveZero(true);
+  };
+
+  const handleAllToZeroClick = () => {
+    // Устанавливаем значение 0 для всех слайдеров
+    const updatedValues: SliderValues = {};
+    cryptArr.forEach((item) => {
+      updatedValues[item.id] = 0;
+    });
+
+    setSliderValues(updatedValues);
+    setAnySliderAboveZero(false);
+  };
 
   return (
     <div>
@@ -160,17 +188,23 @@ const Portfolio: React.FC = () => {
                   }}
                 />
               </div>
-              <span className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2">
+              <span
+                onClick={handleAllToZeroClick}
+                className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2"
+              >
                 All to zero
               </span>
-              <span className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2">
+              <span
+                onClick={handleAllToMaxClick}
+                className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2"
+              >
                 All to max
               </span>
             </div>
             {cryptArr.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[80px]"
+                className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[40px] md:gap-[80px]"
               >
                 <div className="flex items-center gap-[10px]">
                   <img src={item.icon} alt="" />
@@ -186,10 +220,44 @@ const Portfolio: React.FC = () => {
                 <div className="flex gap-[33px] ">
                   <div className="flex gap-[26px] items-center">
                     <Slider
-                      //Слайдеры наши
-                      value={sliderValues[item.id]}
-                      onChange={(value) => onSliderChange(value, item.id)}
-                      className="sfill w-[240px] rounded-[30px] m-0 relative top-[20px]"
+                      // Слайдеры наши
+                      value={sliderValues[item.id] || 0}
+                      classNames={{
+                        handle:
+                          "before:!w-5 before:!h-5 before:!-top-[5px] before:rounded-full before:!bg-white after:hidden before:border-0",
+                      }}
+                      onChange={(value) =>
+                        onSliderChange(value as number, item.id)
+                      }
+                      // handleStyle={[
+                      //   {
+                      //     width: 20,
+                      //     height: 20,
+                      //     backgroundColor: "white",
+                      //     marginLeft: -10,
+                      //     marginTop: -5,
+                      //     border: "none",
+                      //     opacity: 1,
+                      //   },
+                      // ]}
+                      railStyle={{
+                        backgroundColor: "rgba(255, 255, 255, 0.20)",
+                        height: 10,
+                      }}
+                      // dotStyle={{
+                      //   width: 3,
+                      //   height: 3,
+                      //   backgroundColor: "rgba(255, 255, 255, 0.40)",
+                      //   border: "none",
+                      // }}
+                      // activeDotStyle={{
+                      //   width: 3,
+                      //   height: 3,
+                      //   backgroundColor: "rgba(0, 0, 0, 0.50)",
+                      //   border: "none",
+                      // }}
+                      trackStyle={{ backgroundColor: "white", height: 10 }}
+                      className="sfill !w-[240px] rounded-[30px] m-0 relative "
                       marks={{
                         0: "0%",
                         25: "25%",
@@ -199,7 +267,10 @@ const Portfolio: React.FC = () => {
                       }}
                       tooltipVisible={false}
                     />
-                    <span className="font-mono font-[400] text-[16px] leading-[16px] text-white underline underline-offset-2 pt-[14px]">
+                    <span
+                      onClick={() => handleSpanClick(item.id)}
+                      className="font-mono font-[400] text-[16px] leading-[16px] text-white underline underline-offset-2 pt-[14px] cursor-pointer"
+                    >
                       max
                     </span>
                   </div>

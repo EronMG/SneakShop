@@ -79,7 +79,7 @@ font-weight: 400;
 line-height: 12.028px; 
 }
 
-.sfill{
+/* .sfill{
   background: linear-gradient(263deg, rgba(233, 233, 233, 0.20) 5.9%, rgba(191, 191, 191, 0.20) 93.59%);
 }
 .sfill .ant-slider-mark-text {
@@ -92,20 +92,19 @@ font-size: 15px;
 font-style: normal;
 font-weight: 500;
 line-height: 20px; /* 133.333% */
-text-transform: uppercase;
-}
+/* text-transform: uppercase;
+} */
 
 /* Перемещаем метки наверх */
-.sfill .ant-slider-mark {
-  top: -20px; /* или любое другое значение, которое подходит вашему дизайну */
-  bottom: auto; /* убираем стандартное позиционирование снизу */
-}
+/* .sfill .ant-slider-mark {
+  top: -20px; 
+  bottom: auto; 
+} */
 
 /* Переопределяем стили для меток слайдера, чтобы они были лучше видны наверху */
-.sfill .ant-slider-mark-text {
+/* .sfill .ant-slider-mark-text {
   transform: translateX(-50%) translateY(-100%); /* центрируем метки горизонтально и перемещаем их наверх */
-  white-space: nowrap; /* убедитесь, что текст не переносится на новую строку */
-}
+
 
 .fillport{
   background:linear-gradient(241deg, #3E3E3E 15.17%, #252525 88.46%);
@@ -192,3 +191,4 @@ text-transform: uppercase;
 .block24{
   width:373px;
 }
+

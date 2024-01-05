@@ -9,6 +9,7 @@ import FullLogo from "../assets/FullLogo.svg";
 import Modal from "./Modal";
 import btc from "../assets/image5.svg";
 import bnb from "../assets/image15.svg";
+import { networkData } from "./Networks";
 
 const Transfer = () => {
   const networkContext = useContext(NetworkContext);
@@ -73,11 +74,18 @@ const Transfer = () => {
     setExpanded(!isExpanded);
   };
 
+  const [isExpandedToken, setExpandedToken] = useState(false);
+
+  const handleBlockClickToken = () => {
+    setExpandedToken(!isExpandedToken);
+  };
   return (
     <div
       className={`${
         selectedId ? "fillTrans" : "bg-white"
-      } rounded-[30px] w-[564px] ${!isExpanded ? "h-[648px]" : "h-fit"}`}
+      } rounded-[30px] w-[564px] ${!isExpanded ? "h-[648px]" : "h-fit"} ${
+        !isExpandedToken ? "h-[648px]" : "h-fit"
+      } `}
     >
       {selectedId ? (
         <div className="p-[15px] flex flex-col gap-[29px]">
@@ -112,19 +120,49 @@ const Transfer = () => {
                 <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
                   network
                 </h3>
-                <img src={ArrowBlack} alt="" />
+                <img
+                  src={ArrowBlack}
+                  alt=""
+                  className={`${isExpanded ? "-rotate-90" : ""}`}
+                />
               </div>
               {isExpanded && (
-                <div className="expanded-content bg- rounded-[30px] px-[35px] py-[30px]">
-                  <p>dfggdfgs</p>
+                <div className="expanded-content bg- rounded-[30px] px-[25px] py-[20px] flex flex-wrap gap-[10px]">
+                  {networkData.map((item) => (
+                    <p
+                      key={item.id}
+                      className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px]"
+                    >
+                      {item.name}
+                    </p>
+                  ))}
                 </div>
               )}
-              <div className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px]">
+              <div
+                className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px]"
+                onClick={handleBlockClickToken}
+              >
                 <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
                   token
                 </h3>
-                <img src={ArrowBlack} alt="" />
+                <img
+                  src={ArrowBlack}
+                  alt=""
+                  className={`${isExpandedToken ? "-rotate-90" : ""}`}
+                />
               </div>
+              {isExpandedToken && (
+                <div className="expanded-content bg- rounded-[30px] px-[15px] py-[10px] flex flex-wrap gap-[10px]">
+                  {["USDC", "USDT", "dai", "frax"].map((item, index) => (
+                    <p
+                      key={index}
+                      className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px]"
+                    >
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              )}
               <div className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px] items-end">
                 <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
                   $0,0
