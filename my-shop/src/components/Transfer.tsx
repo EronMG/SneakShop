@@ -67,11 +67,17 @@ const Transfer = () => {
     setIsOpen(false);
   }
 
+  const [isExpanded, setExpanded] = useState(false);
+
+  const handleBlockClick = () => {
+    setExpanded(!isExpanded);
+  };
+
   return (
     <div
       className={`${
         selectedId ? "fillTrans" : "bg-white"
-      } rounded-[30px] w-[564px] h-[648px]`}
+      } rounded-[30px] w-[564px] h-fit`}
     >
       {selectedId ? (
         <div className="p-[15px] flex flex-col gap-[29px]">
@@ -99,12 +105,20 @@ const Transfer = () => {
               <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px]">
                 (Convert to)
               </span>
-              <div className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px]">
+              <div
+                onClick={handleBlockClick}
+                className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px]"
+              >
                 <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
                   network
                 </h3>
                 <img src={ArrowBlack} alt="" />
               </div>
+              {isExpanded && (
+                <div className="expanded-content bg- rounded-[30px] px-[35px] py-[30px]">
+                  <p>dfggdfgs</p>
+                </div>
+              )}
               <div className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px]">
                 <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
                   token
@@ -157,7 +171,52 @@ const Transfer = () => {
                   <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                     (You pay)
                   </span>
-                  <div className="flex flex-col gap-[10px]">
+                  <div className="flex flex-col gap-[10px] overflow-scroll h-[300px]">
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
                     <div className="flex gap-[10px] items-center">
                       <img src={btc} alt="" />
                       <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
@@ -165,6 +224,42 @@ const Transfer = () => {
                       </p>
                       <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400] ">
                         ($32,103.4979)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
+                      </span>
+                    </div>
+                    <div className="flex gap-[10px] items-center">
+                      <img src={bnb} alt="" />
+                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
+                        24.55 BNB
+                      </p>
+                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                        ($5,644.7815)
                       </span>
                     </div>
                     <div className="flex gap-[10px] items-center">
