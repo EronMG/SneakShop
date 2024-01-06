@@ -79,10 +79,8 @@ font-weight: 400;
 line-height: 12.028px; 
 }
 
-/* .sfill{
-  background: linear-gradient(263deg, rgba(233, 233, 233, 0.20) 5.9%, rgba(191, 191, 191, 0.20) 93.59%);
-}
-.sfill .ant-slider-mark-text {
+
+/* .sfill .ant-slider-mark-text {
 color: rgba(255, 255, 255, 0.60);
 text-align: right;
 leading-trim: both;
@@ -91,7 +89,7 @@ font-family: GilroyMedium;
 font-size: 15px;
 font-style: normal;
 font-weight: 500;
-line-height: 20px; /* 133.333% */
+line-height: 20px; 133.333% */
 /* text-transform: uppercase;
 } */
 
@@ -192,3 +190,74 @@ line-height: 20px; /* 133.333% */
   width:373px;
 }
 
+
+/* Добавьте следующие стили в ваш файл CSS или в ваш компонент с использованием Styled Components */
+
+/* Стили для меток */
+.ant-slider-mark-text {
+  position: absolute;
+  top: -30px; 
+  transform: translateX(-50%);
+color: rgba(255, 255, 255, 0.60);
+text-align: right;
+leading-trim: both;
+text-edge: cap;
+font-family: GilroyMedium;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 133.333% */
+text-transform: uppercase;
+}
+
+
+/* Стили для непрошедших меток (без border) */
+.ant-slider-mark-text:not(.ant-slider-mark-text-active) {
+  border: none; /* Убирает границу у непрошедших меток */
+  color: #999999; /* Регулируйте цвет текста непрошедших меток */
+}
+.ant-slider-dot.ant-slider-dot-active {
+  height:6px;
+  width:6px;
+  border:0; /* Регулируйте стиль границы у прошедших точек */
+  background-color: rgba(0, 0, 0, 0.50); /* Регулируйте цвет фона у прошедших точек */
+}
+
+/* Стили для непрошедших точек (без border) */
+.ant-slider-dot:not(.ant-slider-dot-active) {
+  background-color: rgba(255, 255, 255, 0.40);
+    height:6px;
+  width:6px;
+  border:0; /* Регулируйте цвет фона у непрошедших точек */
+}
+
+.ant-slider-mark-text.ant-slider-mark-text-active {
+color: rgba(255, 255, 255, 0.60);
+}
+.ant-slider-rail {
+  border-radius: 30px !important;
+}
+.ant-slider{
+  width:250px;
+  height:10px;
+  background:rgba(255, 255, 255, 0.20);;
+  
+}
+.ant-slider-track {
+  border-radius: 30px !important;
+}
+
+.ant-slider-step{
+width:230px !important;
+left:5px !important;
+}
+
+.sfill{
+  margin-top:20px !important;
+  margin-bottom:0px !important;
+}
+.ant-slider-mark{
+  width:230px !important;
+  top:5px !important;
+  left:4px !important;
+}

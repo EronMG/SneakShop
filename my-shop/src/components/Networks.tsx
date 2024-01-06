@@ -103,9 +103,9 @@ const Networks: React.FC<NetworksProps> = ({ netTitle }) => {
             onClick={() => handleClick(id, name)}
             className={`${
               selectedId === id ? "idfill" : "bg-[#464646]"
-            } rounded-[50px] w-fit flex gap-[10px] pt-[6px] pr-[20px] pl-[10px] pb-[10px] items-center`}
+            } rounded-[50px] w-fit flex gap-[10px] pt-[6px] pr-[20px] pl-[10px] pb-[10px] items-center cursor-pointer h-[60px]`}
           >
-            <img src={icon} alt="crypto" className="h-[40px]" />
+            <img src={icon} alt="crypto" className="h-[40px] mt-[4px]" />
             <div className="flex flex-col gap-[10px]">
               <span
                 className={`${

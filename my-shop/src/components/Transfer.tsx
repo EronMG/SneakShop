@@ -22,7 +22,7 @@ const Transfer = () => {
   if (!sliderContext) {
     throw new Error("SliderContext not found");
   }
-
+  const [selectedNetworkName, setSelectedNetworkName] = useState("");
   const { selectedId, selectedName } = networkContext;
   const { isAnySliderAboveZero } = sliderContext;
 
@@ -83,55 +83,65 @@ const Transfer = () => {
     <div
       className={`${
         selectedId ? "fillTrans" : "bg-white"
-      } rounded-[30px] w-[564px] ${!isExpanded ? "h-[648px]" : "h-fit"} ${
+      } rounded-[30px] min-w-[564px] ${!isExpanded ? "h-[648px]" : "h-fit"} ${
         !isExpandedToken ? "h-[648px]" : "h-fit"
       } `}
     >
       {selectedId ? (
-        <div className="p-[15px] flex flex-col gap-[29px]">
-          <div className="flex flex-col gap-[30px] pl-[5px]">
-            <h2 className="text-black font-gilMedium text-[50px] leading-[45px] uppercase pt-[5px]">
+        <div className=" flex flex-col gap-[29px] pb-[15px]">
+          <div className="flex flex-col gap-[20px]">
+            <h2 className="text-black font-gilMedium text-[50px] leading-[45px] uppercase pt-[20px] pl-[20px]">
               transfer
             </h2>
-            <div className="flex flex-col gap-[15px] border-b-[2px] border-black pb-[6px]">
-              <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px]">
-                (Convert from)
-              </span>
-              <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
-                {selectedName}
-              </h3>
+            <div className="flex flex-col gap-[4px] pb-[6px] pl-[20px] pr-[20px] pt-[12px]">
+              <div className="flex flex-col gap-[15px] ">
+                <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px]">
+                  (Convert from)
+                </span>
+                <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
+                  {selectedName}
+                </h3>
+              </div>
+              <div className="w-full h-[2px] bg-black" />
             </div>
-            <div className="flex flex-col gap-[15px] border-b-[1px] border-black pb-[4px]">
-              <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px]">
-                (Total amount)
-              </span>
-              <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
-                $0,0
-              </h3>
+            <div className="flex flex-col gap-[5px] pb-[4px] px-[20px] pt-[4px]">
+              <div className="flex flex-col gap-[15px] ">
+                <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px]">
+                  (Total amount)
+                </span>
+                <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
+                  $0,0
+                </h3>
+              </div>
+              <div className="w-full h-[1px] bg-black" />
             </div>
-            <div className="flex flex-col gap-[15px]">
-              <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px]">
+            <div className="flex flex-col gap-[15px] pt-[5px]">
+              <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px] pl-[20px]">
                 (Convert to)
               </span>
               <div
                 onClick={handleBlockClick}
-                className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px]"
+                className="flex flex-col gap-[4px] border-black  px-[20px]"
               >
-                <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
-                  network
-                </h3>
-                <img
-                  src={ArrowBlack}
-                  alt=""
-                  className={`${isExpanded ? "-rotate-90" : ""}`}
-                />
+                <div className="flex justify-between">
+                  <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
+                    network
+                  </h3>
+                  <img
+                    src={ArrowBlack}
+                    alt=""
+                    className={`${isExpanded ? "-rotate-90" : ""} `}
+                  />
+                </div>
+                <div className="w-full h-[1px] bg-black" />
               </div>
               {isExpanded && (
-                <div className="expanded-content bg- rounded-[30px] px-[25px] py-[20px] flex flex-wrap gap-[10px]">
+                <div className="expanded-content rounded-[20px] px-[35px] py-[30px] flex flex-wrap gap-[10px] bg-white">
                   {networkData.map((item) => (
                     <p
+                      onClick={() => setSelectedNetworkName(item.name)}
                       key={item.id}
-                      className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px]"
+                      className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px] cursor-pointer"
                     >
                       {item.name}
                     </p>
@@ -139,49 +149,56 @@ const Transfer = () => {
                 </div>
               )}
               <div
-                className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px]"
+                className="flex flex-col gap-[4px] px-[20px]"
                 onClick={handleBlockClickToken}
               >
-                <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
-                  token
-                </h3>
-                <img
-                  src={ArrowBlack}
-                  alt=""
-                  className={`${isExpandedToken ? "-rotate-90" : ""}`}
-                />
+                <div className="flex justify-between">
+                  <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
+                    token
+                  </h3>
+                  <img
+                    src={ArrowBlack}
+                    alt=""
+                    className={`${isExpandedToken ? "-rotate-90" : ""}`}
+                  />
+                </div>
+                <div className="w-full h-[1px] bg-black" />
               </div>
               {isExpandedToken && (
-                <div className="expanded-content bg- rounded-[30px] px-[15px] py-[10px] flex flex-wrap gap-[10px]">
+                <div className="expanded-content bg- rounded-[20px] px-[20px] py-[30px] flex flex-wrap gap-[10px] bg-white">
                   {["USDC", "USDT", "dai", "frax"].map((item, index) => (
                     <p
                       key={index}
-                      className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px]"
+                      className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px] cursor-pointer"
                     >
                       {item}
                     </p>
                   ))}
                 </div>
               )}
-              <div className="flex justify-between pr-[5.36px] border-b-[1px] border-black pb-[4px] items-end">
-                <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
-                  $0,0
-                </h3>
-                <span className="text-rgbablack font-mono font-[400] text-[12px] leading-[12.028px]">
-                  (You will receive)
-                </span>
+              <div className="flex flex-col gap-[4px]  px-[20px]">
+                <div className="flex justify-between items-end">
+                  {" "}
+                  <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase ">
+                    $0,0
+                  </h3>
+                  <span className="text-rgbablack font-mono font-[400] text-[12px] leading-[12.028px]">
+                    (You will receive)
+                  </span>
+                </div>
+                <div className="w-full h-[1px] bg-black" />
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-end pr-[5px] gap-[15px]">
-            <span className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px]">
+          <div className="flex flex-col items-end pr-[15px] gap-[15px] pl-[15px]">
+            <span className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px] pr-[5px] ">
               Add addres
             </span>
             <button
               onClick={handleButtonClick}
               style={buttonStyle}
               disabled={!isAnySliderAboveZero}
-              className="relative bg-rgbalow w-full rounded-[30px] flex items-center justify-center py-[34.5px] h-[115px]"
+              className="relative bg-rgbalow w-full rounded-[30px] flex items-center justify-center py-[34.5px] h-[118px]"
             >
               <img
                 src={LogoGray}

@@ -20,12 +20,15 @@ interface SliderValues {
 const Portfolio: React.FC = () => {
   const context = useContext(NetworkContext);
   const contextSlider = useContext(SliderContext);
+
   if (!context) {
     throw new Error("NetworkContext not found");
   }
+
   if (!contextSlider) {
     throw new Error("SliderContext not found");
   }
+
   const { selectedId } = context;
   //инфа с нашими криптовалютами
   const cryptArr: CryptoItem[] = [
@@ -139,6 +142,7 @@ const Portfolio: React.FC = () => {
     // Устанавливаем максимальное значение для конкретного слайдера
     onSliderChange(maxSliderValue, id);
   };
+
   const handleAllToMaxClick = () => {
     // Устанавливаем максимальное значение для всех слайдеров
     const updatedValues: SliderValues = {};
@@ -162,7 +166,7 @@ const Portfolio: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       {selectedId ? (
         <div className="pt-[20px] pr-[15px] pl-[20px] flex flex-col gap-[32px]">
           <div className="flex gap-[24.5px] items-center">
@@ -190,13 +194,13 @@ const Portfolio: React.FC = () => {
               </div>
               <span
                 onClick={handleAllToZeroClick}
-                className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2"
+                className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2 cursor-pointer"
               >
                 All to zero
               </span>
               <span
                 onClick={handleAllToMaxClick}
-                className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2"
+                className="font-mono font-[400] text-rgba text-[12px] leading-[12px] underline underline-offset-2 cursor-pointer"
               >
                 All to max
               </span>
@@ -204,7 +208,7 @@ const Portfolio: React.FC = () => {
             {cryptArr.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[40px] md:gap-[80px]"
+                className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[40px] md:gap-[80px] max-w-[811px]"
               >
                 <div className="flex items-center gap-[10px]">
                   <img src={item.icon} alt="" />
@@ -240,10 +244,7 @@ const Portfolio: React.FC = () => {
                       //     opacity: 1,
                       //   },
                       // ]}
-                      railStyle={{
-                        backgroundColor: "rgba(255, 255, 255, 0.20)",
-                        height: 10,
-                      }}
+
                       // dotStyle={{
                       //   width: 3,
                       //   height: 3,
@@ -256,7 +257,11 @@ const Portfolio: React.FC = () => {
                       //   backgroundColor: "rgba(0, 0, 0, 0.50)",
                       //   border: "none",
                       // }}
-                      trackStyle={{ backgroundColor: "white", height: 10 }}
+                      trackStyle={{
+                        backgroundColor: "white",
+                        height: 10,
+                        top: 0,
+                      }}
                       className="sfill !w-[240px] rounded-[30px] m-0 relative "
                       marks={{
                         0: "0%",
@@ -274,8 +279,11 @@ const Portfolio: React.FC = () => {
                       max
                     </span>
                   </div>
-                  <p className="font-gilMedium text-[30px] leading-[40px] text-rgba uppercase flex items-center">
-                    {" "}
+                  <p
+                    className={`font-gilMedium text-[30px] leading-[40px] uppercase flex items-center ${
+                      sliderValues[item.id] > 0 ? "text-white" : "text-rgba"
+                    }`}
+                  >
                     {getDisplayedCost(item.cost, item.id)}
                   </p>
                 </div>
@@ -292,7 +300,7 @@ const Portfolio: React.FC = () => {
             </h2>
             <img src={Arrow} alt="" />
           </div>
-          <div className="h-[520px] flex items-center justify-center w-[800px]">
+          <div className="h-[520px] flex items-center justify-center w-full">
             <p className="font-mono font-[400] text-[16px] leading-[16px] underline underline-offset-2 text-rgba">
               (Choose any available network to continue)
             </p>
