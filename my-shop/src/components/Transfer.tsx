@@ -29,8 +29,7 @@ const Transfer = () => {
     throw new Error("SliderContext not found");
   }
   const [active, setActive] = useState(false);
-  const { selectedId, selectedName, setSelectedId, setSelectedName } =
-    networkContext;
+  const { selectedId, selectedName } = networkContext;
   const { isAnySliderAboveZero } = sliderContext;
 
   const [isExpandedToken, setExpandedToken] = useState(false);
@@ -83,15 +82,6 @@ const Transfer = () => {
     setIsOpen(false);
   }
 
-  const handleClick = (id: string, name: string) => {
-    if (selectedId === id) {
-      setSelectedId(id);
-      setSelectedName(name);
-    } else {
-      setSelectedId(id);
-      setSelectedName(name);
-    }
-  };
   const handleBlockClick = () => {
     setExpanded(!isExpanded);
   };
@@ -99,6 +89,19 @@ const Transfer = () => {
   const handleBlockClickToken = () => {
     setExpandedToken(!isExpandedToken);
   };
+
+  const currencies: string[] = ["USDC", "USDT", "dai", "frax"];
+  const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
+
+  // Кешированная функция обработчика клика
+  const handleClickToken = useCallback((item: string) => {
+    setSelectedCurrency(item);
+  }, []);
+  const [b, setB] = useState("");
+  const handleNetworkNameClick = useCallback((name: string) => {
+    // Ваш код для обработки клика по имени сети
+    setB(name);
+  }, []);
 
   return (
     <div
@@ -148,7 +151,7 @@ const Transfer = () => {
               >
                 <div className="flex justify-between">
                   <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
-                    network
+                    {b}
                   </h3>
                   <img
                     src={ArrowBlack}
@@ -162,7 +165,7 @@ const Transfer = () => {
                 <div className="expanded-content rounded-[20px] px-[35px] py-[30px] flex flex-wrap gap-[10px] bg-white">
                   {networkData.map(({ id, name }) => (
                     <p
-                      onClick={() => handleClick(id, name)}
+                      onClick={() => handleNetworkNameClick(name)}
                       key={id}
                       className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px] cursor-pointer"
                     >
@@ -177,7 +180,11 @@ const Transfer = () => {
               >
                 <div className="flex justify-between">
                   <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
-                    token
+                    {selectedCurrency ? (
+                      <p className="">{selectedCurrency} </p>
+                    ) : (
+                      "Token"
+                    )}
                   </h3>
                   <img
                     src={ArrowBlack}
@@ -189,10 +196,13 @@ const Transfer = () => {
               </div>
               {isExpandedToken && (
                 <div className="expanded-content bg- rounded-[20px] px-[20px] py-[30px] flex flex-wrap gap-[10px] bg-white">
-                  {["USDC", "USDT", "dai", "frax"].map((item, index) => (
+                  {currencies.map((item, index) => (
                     <p
                       key={index}
-                      className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px] cursor-pointer"
+                      className={`text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px] cursor-pointer ${
+                        item === selectedCurrency ? "" : ""
+                      }`}
+                      onClick={() => handleClickToken(item)}
                     >
                       {item}
                     </p>
