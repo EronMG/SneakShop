@@ -91,6 +91,7 @@ const Networks: React.FC<NetworksProps> = ({ netTitle }) => {
       setSelectedName(name);
     }
   };
+
   return (
     <div className="fillnet rounded-[30px] pt-[19px] pb-[20px] px-[21px] flex flex-col gap-[31px]">
       <h2 className="text-white font-gilMedium uppercase text-[50px] leading-[45px]">

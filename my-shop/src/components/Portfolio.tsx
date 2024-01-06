@@ -31,6 +31,8 @@ const Portfolio: React.FC = () => {
 
   const { selectedId } = context;
   //инфа с нашими криптовалютами
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const cryptArr: CryptoItem[] = [
     {
       id: "1",
@@ -127,15 +129,6 @@ const Portfolio: React.FC = () => {
     [setAnySliderAboveZero]
   );
 
-  const getDisplayedCost = useCallback(
-    //callBack  для кеширования
-    (cost: number, id: string) => {
-      const value = (cost * sliderValues[id]) / 100;
-      return sliderValues[id] === 0 ? "0" : value.toFixed(4);
-    },
-    [sliderValues]
-  );
-
   const maxSliderValue = 100;
 
   const handleSpanClick = (id: string) => {
@@ -164,6 +157,49 @@ const Portfolio: React.FC = () => {
     setSliderValues(updatedValues);
     setAnySliderAboveZero(false);
   };
+  const [inputValue, setInputValue] = useState<number>(0);
+
+  const handleInputValueChange = useCallback(
+    (value: number, id: string) => {
+      setSliderValues((prev) => {
+        // Находим элемент массива по id
+        const currentItem = cryptArr.find((item) => item.id === id);
+        if (!currentItem) {
+          return prev;
+        }
+
+        // Приводим значение введенное в input к процентам
+        const percentageValue = (value / currentItem.cost) * 100;
+        const updatedValues = { ...prev, [id]: percentageValue };
+
+        // Ограничиваем максимальное и минимальное значения в слайдере
+        if (percentageValue > 100) {
+          updatedValues[id] = 100;
+        } else if (percentageValue < 0) {
+          updatedValues[id] = 0;
+        }
+
+        const isAboveZero = Object.values(updatedValues).some((val) => val > 0);
+        setAnySliderAboveZero(isAboveZero);
+        return updatedValues;
+      });
+    },
+    [cryptArr, setAnySliderAboveZero]
+  );
+  const handleSliderInputChange = useCallback(
+    (value: number, id: string) => {
+      setSliderValues((prev) => {
+        const updatedValues = { ...prev, [id]: value };
+        const isAboveZero = Object.values(updatedValues).some((val) => val > 0);
+        setAnySliderAboveZero(isAboveZero);
+
+        setInputValue(value); // Обновляем значение input при изменении слайдера
+
+        return updatedValues;
+      });
+    },
+    [setAnySliderAboveZero]
+  );
 
   return (
     <div className="w-full">
@@ -224,39 +260,14 @@ const Portfolio: React.FC = () => {
                 <div className="flex gap-[33px] ">
                   <div className="flex gap-[26px] items-center">
                     <Slider
-                      // Слайдеры наши
                       value={sliderValues[item.id] || 0}
                       classNames={{
                         handle:
                           "before:!w-5 before:!h-5 before:!-top-[5px] before:rounded-full before:!bg-white after:hidden before:border-0",
                       }}
                       onChange={(value) =>
-                        onSliderChange(value as number, item.id)
+                        handleSliderInputChange(value as number, item.id)
                       }
-                      // handleStyle={[
-                      //   {
-                      //     width: 20,
-                      //     height: 20,
-                      //     backgroundColor: "white",
-                      //     marginLeft: -10,
-                      //     marginTop: -5,
-                      //     border: "none",
-                      //     opacity: 1,
-                      //   },
-                      // ]}
-
-                      // dotStyle={{
-                      //   width: 3,
-                      //   height: 3,
-                      //   backgroundColor: "rgba(255, 255, 255, 0.40)",
-                      //   border: "none",
-                      // }}
-                      // activeDotStyle={{
-                      //   width: 3,
-                      //   height: 3,
-                      //   backgroundColor: "rgba(0, 0, 0, 0.50)",
-                      //   border: "none",
-                      // }}
                       trackStyle={{
                         backgroundColor: "white",
                         height: 10,
@@ -284,7 +295,25 @@ const Portfolio: React.FC = () => {
                       sliderValues[item.id] > 0 ? "text-white" : "text-rgba"
                     }`}
                   >
-                    {getDisplayedCost(item.cost, item.id)}
+                    <input
+                      type="number"
+                      value={((sliderValues[item.id] || 0) / 100) * item.cost}
+                      onChange={(e) =>
+                        handleInputValueChange(
+                          parseFloat(e.target.value),
+                          item.id
+                        )
+                      }
+                      min={0}
+                      max={item.cost}
+                      step={0.00001}
+                      className={`bg-transparent outline-none text-rgba w-[154px] ${
+                        sliderValues[item.id] > 0 ? "text-white" : ""
+                      }`}
+                      style={{
+                        paddingRight: "0.5em",
+                      }}
+                    />
                   </p>
                 </div>
               </div>

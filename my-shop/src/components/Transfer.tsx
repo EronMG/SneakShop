@@ -22,9 +22,13 @@ const Transfer = () => {
   if (!sliderContext) {
     throw new Error("SliderContext not found");
   }
+
   const [selectedNetworkName, setSelectedNetworkName] = useState("");
   const { selectedId, selectedName } = networkContext;
   const { isAnySliderAboveZero } = sliderContext;
+  const [isExpandedToken, setExpandedToken] = useState(false);
+  const [isExpanded, setExpanded] = useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const [opacityState, setOpacityState] = useState({
     firstImgOpacity: 1,
@@ -60,25 +64,23 @@ const Transfer = () => {
     transition: "opacity 700ms ease-in-out",
     position: "absolute",
   };
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+
   function openModal() {
     setIsOpen(true);
   }
+
   function closeModal() {
     setIsOpen(false);
   }
-
-  const [isExpanded, setExpanded] = useState(false);
 
   const handleBlockClick = () => {
     setExpanded(!isExpanded);
   };
 
-  const [isExpandedToken, setExpandedToken] = useState(false);
-
   const handleBlockClickToken = () => {
     setExpandedToken(!isExpandedToken);
   };
+
   return (
     <div
       className={`${

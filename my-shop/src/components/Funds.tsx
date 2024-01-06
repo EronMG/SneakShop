@@ -1,17 +1,13 @@
 import React from "react";
-import Vector from "../assets/1.svg";
 import "../index.css";
+import Example from "./Graph";
 const Funds = () => {
   return (
     <div className="fillgraph relative px-[20px] py-[17px] flex flex-col justify-between rounded-[30px]">
       <h2 className="text-white font-gilMedium text-[50px] leading-[45px] uppercase pt-[3px]">
         Your funds
       </h2>
-      <img
-        src={Vector}
-        alt="graph"
-        className="absolute top-[70px] left-[52px]"
-      />
+      <Example />
       <div className="flex gap-[265px] items-end">
         <div className="flex items-end gap-[21.5px]">
           <p className="text-white font-gilMedium text-[40px] leading-[40px] uppercase">
