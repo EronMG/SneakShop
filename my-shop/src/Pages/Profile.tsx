@@ -13,13 +13,13 @@ import Funds from "../components/Funds";
 const Nav = () => {
   return (
     <div className="flex pt-[21px] pb-[19px] justify-between px-[30px]">
-      <span className="text-white font-mono font-[400] underline text-[16px] leading-[16px] pt-[3.5px] underline-offset-[1.8px]">
+      <span className="text-white font-mono font-[400] underline text-[16px] leading-[16px] pt-[3.5px] underline-offset-[1.8px] cursor-pointer">
         About
       </span>
       <Link to="/">
         <img src={logo} alt="profile" className="ml-[158.7px]" />
       </Link>
-      <div className="flex  gap-[16px]">
+      <div className="flex  gap-[16px] cursor-pointer">
         <img src={ProfileIcon} alt="" className="rounded-full object-contain" />
         <span className="text-white font-mono font-[400] underline text-[16px] leading-[16px] pt-[3.5px] underline-offset-[1.8px]">
           0xE07eA.....519BF
