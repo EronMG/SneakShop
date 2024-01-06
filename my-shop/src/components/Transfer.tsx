@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useState, CSSProperties } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  CSSProperties,
+  useCallback,
+} from "react";
 import { NetworkContext } from "../context/SelectedId";
 import LogoBlack from "../assets/LogoBlack.svg";
 import LogoGray from "../assets/LogoGray.svg";
@@ -22,10 +28,11 @@ const Transfer = () => {
   if (!sliderContext) {
     throw new Error("SliderContext not found");
   }
-
-  const [selectedNetworkName, setSelectedNetworkName] = useState("");
-  const { selectedId, selectedName } = networkContext;
+  const [active, setActive] = useState(false);
+  const { selectedId, selectedName, setSelectedId, setSelectedName } =
+    networkContext;
   const { isAnySliderAboveZero } = sliderContext;
+
   const [isExpandedToken, setExpandedToken] = useState(false);
   const [isExpanded, setExpanded] = useState(false);
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -40,6 +47,9 @@ const Transfer = () => {
       openModal();
     }
   }
+  const handleActiveClick = useCallback(() => {
+    setActive(!active);
+  }, [active]);
 
   useEffect(() => {
     setOpacityState({
@@ -73,6 +83,15 @@ const Transfer = () => {
     setIsOpen(false);
   }
 
+  const handleClick = (id: string, name: string) => {
+    if (selectedId === id) {
+      setSelectedId(id);
+      setSelectedName(name);
+    } else {
+      setSelectedId(id);
+      setSelectedName(name);
+    }
+  };
   const handleBlockClick = () => {
     setExpanded(!isExpanded);
   };
@@ -83,14 +102,16 @@ const Transfer = () => {
 
   return (
     <div
-      className={`${
-        selectedId ? "fillTrans" : "bg-white"
-      } rounded-[30px] min-w-[564px] ${!isExpanded ? "h-[648px]" : "h-fit"} ${
-        !isExpandedToken ? "h-[648px]" : "h-fit"
+      className={`  min-w-[564px] ${!isExpanded ? "min-h-[648px]" : "h-fit"} ${
+        !isExpandedToken ? "min-h-[648px]" : "h-fit"
       } `}
     >
       {selectedId ? (
-        <div className=" flex flex-col gap-[29px] pb-[15px]">
+        <div
+          className={`rounded-[30px] ${
+            selectedId ? "fillTrans" : "bg-white"
+          } flex flex-col gap-[29px] pb-[15px]`}
+        >
           <div className="flex flex-col gap-[20px]">
             <h2 className="text-black font-gilMedium text-[50px] leading-[45px] uppercase pt-[20px] pl-[20px]">
               transfer
@@ -131,7 +152,7 @@ const Transfer = () => {
                   </h3>
                   <img
                     src={ArrowBlack}
-                    alt=""
+                    alt="arrow"
                     className={`${isExpanded ? "-rotate-90" : ""} `}
                   />
                 </div>
@@ -139,13 +160,13 @@ const Transfer = () => {
               </div>
               {isExpanded && (
                 <div className="expanded-content rounded-[20px] px-[35px] py-[30px] flex flex-wrap gap-[10px] bg-white">
-                  {networkData.map((item) => (
+                  {networkData.map(({ id, name }) => (
                     <p
-                      onClick={() => setSelectedNetworkName(item.name)}
-                      key={item.id}
+                      onClick={() => handleClick(id, name)}
+                      key={id}
                       className="text-black font-mono font-[400] underline underline-offset-2 text-[16px] leading-[16px] cursor-pointer"
                     >
-                      {item.name}
+                      {name}
                     </p>
                   ))}
                 </div>
@@ -228,7 +249,11 @@ const Transfer = () => {
                   <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                     (You pay)
                   </span>
-                  <div className="flex flex-col gap-[10px] overflow-scroll h-[200px]">
+                  <div
+                    className={`flex flex-col gap-[10px] overflow-scroll ${
+                      active ? "h-[140px]" : "h-[200px]"
+                    }`}
+                  >
                     <div className="flex gap-[10px] items-center">
                       <img src={bnb} alt="" />
                       <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
@@ -317,8 +342,11 @@ const Transfer = () => {
                   </div>
                   <div className="flex items-end  gap-[23px] pt-[13px]">
                     <div className="h-[1px] bg-black w-[412px]" />
-                    <p className="font-mono font-[400] text-black text-[16px] leading-[16px] underline underline-offset-1">
-                      Show more
+                    <p
+                      className="font-mono font-[400] text-black text-[16px] leading-[16px] underline underline-offset-1 cursor-pointer"
+                      onClick={handleActiveClick}
+                    >
+                      {active ? "Show less" : "Show more"}
                     </p>
                   </div>
                   <div className="flex flex-col gap-[15px] pt-[10px]">
@@ -335,6 +363,16 @@ const Transfer = () => {
                         </p>
                       </div>
                     </div>
+                    {active && (
+                      <div className="flex justify-between pl-[0px]">
+                        <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          Max. slippage
+                        </span>
+                        <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          5%
+                        </p>
+                      </div>
+                    )}
                     <div className="flex justify-between pl-[0px]">
                       <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                         (Fee)
@@ -343,6 +381,16 @@ const Transfer = () => {
                         $0{" "}
                       </p>
                     </div>
+                    {active && (
+                      <div className="flex justify-between pl-[0px]">
+                        <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          (Fee)
+                        </span>
+                        <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          $0{" "}
+                        </p>
+                      </div>
+                    )}
                     <div className="flex justify-between pl-[0px]">
                       <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                         (Network cost)
@@ -361,7 +409,7 @@ const Transfer = () => {
           </div>
         </div>
       ) : (
-        <div className="flex items-center h-full justify-center">
+        <div className="flex items-center h-[648px] justify-center bg-white rounded-[30px]">
           <img src={LogoBlack} alt="logo" />
         </div>
       )}
