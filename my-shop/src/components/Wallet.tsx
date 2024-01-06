@@ -32,10 +32,10 @@ const Wallet: React.FC<WalletProps> = ({
           </p>
         </div>
         <div className="flex gap-[30px]">
-          <p className="text-white text-[16px] font-mono font-[400] underline underline-offset-2 leading-[16px] pr-[2px]">
+          <p className="text-white text-[16px] font-mono font-[400] underline underline-offset-2 leading-[16px] pr-[2px] cursor-pointer">
             {changeWalletText}
           </p>
-          <p className="text-white text-[16px] font-mono font-[400] underline underline-offset-2 leading-[16px]">
+          <p className="text-white text-[16px] font-mono font-[400] underline underline-offset-2 leading-[16px] cursor-pointer">
             {addWalletText}
           </p>
         </div>

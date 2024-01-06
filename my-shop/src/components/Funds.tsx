@@ -17,7 +17,7 @@ const Funds = () => {
             +12.3%
           </span>
         </div>
-        <p className="font-mono font-[400] text-white text-[16px] leading-[16px]">
+        <p className="font-mono font-[400] text-rgba text-[16px] leading-[16px]">
           (month)
         </p>
       </div>
