@@ -220,7 +220,7 @@ const Transfer = () => {
               contentLabel="Example Modal"
               onRequestClose={closeModal}
             >
-              <div className="p-[15px] flex flex-col gap-[50px]">
+              <div className="p-[15px] flex flex-col gap-[30px]">
                 <h2 className="font-gilMedium text-[50px] leading-[45px] text-black uppercase pt-[5px] pl-[5px]">
                   confirm swap
                 </h2>
@@ -228,34 +228,7 @@ const Transfer = () => {
                   <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                     (You pay)
                   </span>
-                  <div className="flex flex-col gap-[10px] overflow-scroll h-[300px]">
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
+                  <div className="flex flex-col gap-[10px] overflow-scroll h-[200px]">
                     <div className="flex gap-[10px] items-center">
                       <img src={bnb} alt="" />
                       <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">

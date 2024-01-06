@@ -52,6 +52,7 @@ export default class Example extends PureComponent {
               key={s.name}
               dot={false}
               stroke="url(#lineGradient)"
+              strokeWidth={3}
             />
           ))}
         </LineChart>

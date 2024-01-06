@@ -45,7 +45,7 @@ const Profile = () => {
             <Funds />
           </div>
           <Networks netTitle={"networks"} />
-          <div className="fillport flex justify-between rounded-[30px] min-h-[648px]">
+          <div className="fillport flex justify-between rounded-[30px] min-h-[648px] pb-[20px] mb-[20px]">
             <Portfolio />
             <Transfer />
           </div>
