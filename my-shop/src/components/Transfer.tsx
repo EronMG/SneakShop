@@ -147,11 +147,11 @@ const Transfer = () => {
               </span>
               <div
                 onClick={handleBlockClick}
-                className="flex flex-col gap-[4px] border-black  px-[20px]"
+                className="flex flex-col gap-[4px] px-[20px]"
               >
                 <div className="flex justify-between">
                   <h3 className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
-                    {b}
+                    {b ? b : "Network"}
                   </h3>
                   <img
                     src={ArrowBlack}
@@ -159,7 +159,7 @@ const Transfer = () => {
                     className={`${isExpanded ? "-rotate-90" : ""} `}
                   />
                 </div>
-                <div className="w-full h-[1px] bg-black" />
+                {isExpanded ? "" : <div className="w-full h-[1px] bg-black" />}
               </div>
               {isExpanded && (
                 <div className="expanded-content rounded-[20px] px-[35px] py-[30px] flex flex-wrap gap-[10px] bg-white">
@@ -192,7 +192,11 @@ const Transfer = () => {
                     className={`${isExpandedToken ? "-rotate-90" : ""}`}
                   />
                 </div>
-                <div className="w-full h-[1px] bg-black" />
+                {isExpandedToken ? (
+                  ""
+                ) : (
+                  <div className="w-full h-[1px] bg-black" />
+                )}
               </div>
               {isExpandedToken && (
                 <div className="expanded-content bg- rounded-[20px] px-[20px] py-[30px] flex flex-wrap gap-[10px] bg-white">
@@ -409,7 +413,7 @@ const Transfer = () => {
                         $22.5{" "}
                       </p>
                     </div>
-                    <button className="text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-center justify-center py-[46px] w-[534px] rounded-[30px]">
+                    <button className="text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-center justify-center py-[40px] w-[534px] rounded-[30px]">
                       confirm swap
                     </button>
                   </div>
