@@ -244,7 +244,7 @@ const Portfolio: React.FC = () => {
             {cryptArr.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[40px] md:gap-[80px] max-w-[811px]"
+                className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[40px] md:gap-[80px]"
               >
                 <div className="flex items-center gap-[10px]">
                   <img src={item.icon} alt="" />
@@ -307,7 +307,7 @@ const Portfolio: React.FC = () => {
                       min={0}
                       max={item.cost}
                       step={0.00001}
-                      className={`bg-transparent outline-none text-rgba w-[154px] ${
+                      className={`bg-transparent outline-none text-rgba w-[157px] ${
                         sliderValues[item.id] > 0 ? "text-white" : ""
                       }`}
                       style={{
