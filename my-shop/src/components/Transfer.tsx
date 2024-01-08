@@ -28,10 +28,13 @@ const Transfer = () => {
   if (!sliderContext) {
     throw new Error("SliderContext not found");
   }
-  const [active, setActive] = useState(false);
-  const { selectedId, selectedName } = networkContext;
-  const { isAnySliderAboveZero } = sliderContext;
 
+  const [active, setActive] = useState(false);
+  const { selectedId, selectedName } = networkContext!;
+  const { isAnySliderAboveZero } = sliderContext!;
+  const currencies: string[] = ["USDC", "USDT", "dai", "frax"];
+  const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
+  const [b, setB] = useState("");
   const [isExpandedToken, setExpandedToken] = useState(false);
   const [isExpanded, setExpanded] = useState(false);
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -41,11 +44,12 @@ const Transfer = () => {
     secondImgOpacity: 0,
   });
 
-  function handleButtonClick() {
+  const handleButtonClick = useCallback(() => {
     if (isAnySliderAboveZero) {
       openModal();
     }
-  }
+  }, [isAnySliderAboveZero]);
+
   const handleActiveClick = useCallback(() => {
     setActive(!active);
   }, [active]);
@@ -81,28 +85,59 @@ const Transfer = () => {
   function closeModal() {
     setIsOpen(false);
   }
-
-  const handleBlockClick = () => {
-    setExpanded(!isExpanded);
-  };
-
-  const handleBlockClickToken = () => {
-    setExpandedToken(!isExpandedToken);
-  };
-
-  const currencies: string[] = ["USDC", "USDT", "dai", "frax"];
-  const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
+  const handleBlockClick = () => setExpanded(!isExpanded);
+  const handleBlockClickToken = () => setExpandedToken(!isExpandedToken);
 
   // Кешированная функция обработчика клика
-  const handleClickToken = useCallback((item: string) => {
-    setSelectedCurrency(item);
-  }, []);
-  const [b, setB] = useState("");
-  const handleNetworkNameClick = useCallback((name: string) => {
-    // Ваш код для обработки клика по имени сети
-    setB(name);
-  }, []);
+  const handleClickToken = useCallback(
+    (item: string) => setSelectedCurrency(item),
+    []
+  );
 
+  const handleNetworkNameClick = useCallback((name: string) => setB(name), []);
+
+  const arr = [
+    {
+      name: "0.769725 BTC",
+      img: btc,
+      dol: "($32,103.4979)",
+    },
+    {
+      name: "24.55 BNB",
+      img: bnb,
+      dol: "($5,644.7815)",
+    },
+    {
+      name: "0.769725 BTC",
+      img: btc,
+      dol: "($32,103.4979)",
+    },
+    {
+      name: "24.55 BNB",
+      img: bnb,
+      dol: "($5,644.7815)",
+    },
+    {
+      name: "0.769725 BTC",
+      img: btc,
+      dol: "($32,103.4979)",
+    },
+    {
+      name: "24.55 BNB",
+      img: bnb,
+      dol: "($5,644.7815)",
+    },
+    {
+      name: "0.769725 BTC",
+      img: btc,
+      dol: "($32,103.4979)",
+    },
+    {
+      name: "24.55 BNB",
+      img: bnb,
+      dol: "($5,644.7815)",
+    },
+  ];
   return (
     <div
       className={`  min-w-[564px] ${!isExpanded ? "min-h-[648px]" : "h-fit"} ${
@@ -264,82 +299,21 @@ const Transfer = () => {
                     (You pay)
                   </span>
                   <div
-                    className={`flex flex-col gap-[10px] overflow-scroll ${
-                      active ? "h-[140px]" : "h-[200px]"
+                    className={`flex flex-col gap-[10px] overflow-scroll min-h-[50px] max-h-[300px] ${
+                      active ? "max-h-[140px]" : "max-h-[200px]"
                     }`}
                   >
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={btc} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        0.769725 BTC
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400] ">
-                        ($32,103.4979)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
-                    <div className="flex gap-[10px] items-center">
-                      <img src={bnb} alt="" />
-                      <p className="font-gilMedium text-[30px] leading-[30px] text-black uppercase">
-                        24.55 BNB
-                      </p>
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        ($5,644.7815)
-                      </span>
-                    </div>
+                    {arr.map((item, index) => (
+                      <div key={index} className="flex gap-[10px] items-center">
+                        <img src={item.img} alt="icon" />
+                        <p className="text-black font-gilMedium text-[30px] leading-[30px] uppercase">
+                          {item.name}
+                        </p>
+                        <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px]">
+                          {item.dol}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="flex flex-col gap-[20px] pl-[4px]">

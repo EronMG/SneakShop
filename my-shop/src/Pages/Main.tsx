@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <>
       <Nav />
-      <MainScreen />
+      <MainScreen from={1} to={24} />
     </>
   );
 };
