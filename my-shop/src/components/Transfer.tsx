@@ -290,7 +290,7 @@ const Transfer = () => {
               contentLabel="Example Modal"
               onRequestClose={closeModal}
             >
-              <div className="p-[15px] flex flex-col gap-[30px]">
+              <div className="p-[15px] flex flex-col gap-[20px]">
                 <h2 className="font-gilMedium text-[50px] leading-[45px] text-black uppercase pt-[5px] pl-[5px]">
                   confirm swap
                 </h2>
@@ -299,7 +299,7 @@ const Transfer = () => {
                     (You pay)
                   </span>
                   <div
-                    className={`flex flex-col gap-[10px] overflow-scroll min-h-[50px] max-h-[300px] ${
+                    className={`flex flex-col gap-[10px] overflow-scroll min-h-[50px] ${
                       active ? "max-h-[140px]" : "max-h-[200px]"
                     }`}
                   >
@@ -338,13 +338,22 @@ const Transfer = () => {
                     </p>
                   </div>
                   <div className="flex flex-col gap-[15px] pt-[10px]">
-                    <div className="flex justify-between pl-[0px]">
+                    <div className="flex justify-between pl-[0px] overflow-scroll h-[68px]">
                       <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                         (Rate)
                       </span>
                       <div className="flex flex-col items-end gap-[10px]">
                         <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                           1 BTC = $41,732.27{" "}
+                        </p>
+                        <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          1 BNB = $229.66{" "}
+                        </p>
+                        <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          1 BNB = $229.66{" "}
+                        </p>
+                        <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          1 BNB = $229.66{" "}
                         </p>
                         <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                           1 BNB = $229.66{" "}
