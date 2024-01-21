@@ -312,6 +312,7 @@ const Portfolio: React.FC = () => {
                       }`}
                       style={{
                         paddingRight: "0.5em",
+                        MozAppearance: "textfield", // Добавляем вендорный префикс для Firefox
                       }}
                     />
                   </p>
