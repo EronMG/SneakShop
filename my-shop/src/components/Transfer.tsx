@@ -417,6 +417,10 @@ const Transfer = () => {
                   </div>
                   <div className="flex flex-col gap-[15px] pt-[10px]">
                     <div
+                      style={{
+                        scrollbarWidth: "none", // Для Firefox
+                        msOverflowStyle: "none", // Для IE и Edge
+                      }}
                       className={` justify-between pl-[0px] overflow-scroll h-[68px]  ${
                         loading || success !== null ? "hidden" : "flex"
                       }`}
