@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/Group1.svg";
 import ProfileIcon from "../assets/Profile.svg";
 import Wallet from "../components/Wallet";
@@ -29,25 +29,39 @@ const Nav = () => {
   );
 };
 const Profile = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    // Set isActive to true after a short delay (adjust as needed)
+    const delay = setTimeout(() => {
+      setIsActive(true);
+    }, 100);
+
+    // Clear the timeout on component unmount
+    return () => clearTimeout(delay);
+  }, []);
+
   return (
     <SliderProvider>
       <NetworkProvider>
-        <Nav />
-        <div className="px-[15px] flex flex-col gap-[15px] ">
-          <div className="flex justify-between">
-            {" "}
-            <Wallet
-              walletTitle={"WALLET:"}
-              walletAddress={"0xE07eA.....519BF"}
-              changeWalletText={"Change main wallet"}
-              addWalletText={"Add wallet"}
-            />
-            <Funds />
-          </div>
-          <Networks netTitle={"networks"} />
-          <div className="fillport flex justify-between rounded-[30px] min-h-[648px] pb-[20px] mb-[20px]">
-            <Portfolio />
-            <Transfer />
+        <div className={`fade-in ${isActive ? "active" : ""}`}>
+          <Nav />
+          <div className="px-[15px] flex flex-col gap-[15px] ">
+            <div className="flex justify-between">
+              {" "}
+              <Wallet
+                walletTitle={"WALLET:"}
+                walletAddress={"0xE07eA.....519BF"}
+                changeWalletText={"Change main wallet"}
+                addWalletText={"Add wallet"}
+              />
+              <Funds />
+            </div>
+            <Networks netTitle={"networks"} />
+            <div className="fillport flex justify-between rounded-[30px] min-h-[648px] pb-[20px] mb-[20px]">
+              <Portfolio />
+              <Transfer />
+            </div>
           </div>
         </div>
       </NetworkProvider>

@@ -26,16 +26,22 @@ const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
   const [animate, setAnimate] = React.useState(false);
 
   const handleClick = () => {
+    // Set animate to true
     setAnimate(true);
+
+    // Delay the navigation by 2 seconds
+    setTimeout(() => {
+      // Navigate to "/profile" after 2 seconds
+      window.location.href = "/profile";
+    }, 2000);
   };
 
   return (
-    <Link
-      to={`${animate === true ? "/profile" : ""}`}
+    <div
+      onClick={handleClick}
       className={`flex overflow-hidden justify-between items-center ${
         animate && "blocks-animate"
       }`}
-      onClick={handleClick}
     >
       <Block
         size={size}
@@ -65,7 +71,7 @@ const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
         size={size}
         className="main flex flex-col items-start gap-[10px] rotate-180"
       />
-    </Link>
+    </div>
   );
 };
 

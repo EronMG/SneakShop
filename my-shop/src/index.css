@@ -373,3 +373,23 @@ input[type="number"]::-webkit-outer-spin-button {
 .error-shadow {
 background: linear-gradient(194deg, rgba(233, 233, 233, 0.00) 64.6%, rgba(255, 135, 135, 0.78) 108.41%);
 }
+
+.fade-in {
+  opacity: 0;
+  transition: opacity ease-in-out 1s;
+}
+
+.fade-in.active {
+  opacity: 1;
+}
+
+.animated-element {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fade-in-right {
+  opacity: 1;
+  transform: translateX(0);
+}

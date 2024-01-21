@@ -5,6 +5,7 @@ import React, {
   CSSProperties,
   useCallback,
 } from "react";
+import { useSpring, animated } from "react-spring";
 import { NetworkContext } from "../context/SelectedId";
 import LogoBlack from "../assets/LogoBlack.svg";
 import LogoGray from "../assets/LogoGray.svg";
@@ -32,7 +33,6 @@ const Transfer = () => {
   if (!sliderContext) {
     throw new Error("SliderContext not found");
   }
-  const [confirm, setConfirm] = useState(false);
   const [active, setActive] = useState(false);
   const { selectedId, selectedName } = networkContext!;
   const { isAnySliderAboveZero } = sliderContext!;
@@ -192,10 +192,6 @@ const Transfer = () => {
     }
   };
 
-  const handleLinkClick = (event: any) => {
-    event.preventDefault();
-    // Другие действия, которые вы хотите выполнить
-  };
   const getShadowClass = () => {
     if (success === true) {
       return "success-shadow";
@@ -205,6 +201,15 @@ const Transfer = () => {
       return ""; // Если нет успешности или неудачи, можете оставить пустую строку или другой класс по умолчанию
     }
   };
+  const fadeInAnimation = useSpring({
+    opacity: success !== null ? 1 : 0,
+    transform:
+      success !== null
+        ? "translateX(0) scale(1)"
+        : "translateX(20px) scale(0.8)",
+  });
+  const AnimatedImage = animated.img;
+  const AnimatedText = animated.span;
   return (
     <div
       className={`  min-w-[564px] ${!isExpanded ? "min-h-[648px]" : "h-fit"} ${
@@ -479,15 +484,18 @@ const Transfer = () => {
                     {success !== null && !loading && (
                       <div className="flex items-center justify-center gap-2">
                         {/* Картинка "Успешно" или "Ошибка" */}
-                        <img
+                        <AnimatedImage
                           src={success ? successImage : errorImage}
                           alt={success ? "success" : "error"}
                           className="w-[150px] h-[150px]"
+                          style={fadeInAnimation}
                         />
-                        <span className="text-black text-[40px] font-gilMedium uppercase w-[268px]">
-                          {" "}
+                        <AnimatedText
+                          className="text-black text-[40px] font-gilMedium uppercase w-[268px]"
+                          style={fadeInAnimation}
+                        >
                           {getResultTex2()}
-                        </span>
+                        </AnimatedText>
                       </div>
                     )}
                     <div
