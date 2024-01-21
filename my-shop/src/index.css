@@ -230,21 +230,27 @@ line-height: 20px; 133.333% */
 
 
 .blocks-animate .block:not(.block-center) {
+  -webkit-transition: -webkit-transform ease-out 0.38s, opacity ease-out 0.38s;
   -moz-transition: -moz-transform ease-out 0.38s, opacity ease-out 0.38s;
-  -moz-transform: translateX(-373px);
-  opacity: 0;
   transition: transform ease-out 0.38s, opacity ease-out 0.38s;
+  -webkit-transform: translateX(-373px);
+  -moz-transform: translateX(-373px);
   transform: translateX(-373px);
+  opacity: 0;
 }
 
 .blocks-animate .block-center {
+  -webkit-transition: -webkit-transform ease-out 0.38s, opacity ease-out 0.38s;
   -moz-transition: -moz-transform ease-out 0.38s, opacity ease-out 0.38s;
-  -moz-transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
-  -moz-animation: block-center-bg ease-out 0.38s both;
   transition: transform ease-out 0.38s, opacity ease-out 0.38s;
+  -webkit-transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
+  -moz-transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
   transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
+  opacity: 1;
+  -webkit-animation: block-center-bg ease-out 0.38s both;
   animation: block-center-bg ease-out 0.38s both;
 }
+
 
 @keyframes block-center-bg {
   0% {
