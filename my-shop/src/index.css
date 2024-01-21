@@ -228,10 +228,22 @@ line-height: 20px; 133.333% */
   transition-delay: 0.5s;
 }
 
+
 .blocks-animate .block:not(.block-center) {
+  -moz-transition: -moz-transform ease-out 0.38s, opacity ease-out 0.38s;
+  -moz-transform: translateX(-373px);
+  opacity: 0;
   transition: transform ease-out 0.38s, opacity ease-out 0.38s;
   transform: translateX(-373px);
-  opacity: 0;
+}
+
+.blocks-animate .block-center {
+  -moz-transition: -moz-transform ease-out 0.38s, opacity ease-out 0.38s;
+  -moz-transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
+  -moz-animation: block-center-bg ease-out 0.38s both;
+  transition: transform ease-out 0.38s, opacity ease-out 0.38s;
+  transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
+  animation: block-center-bg ease-out 0.38s both;
 }
 
 @keyframes block-center-bg {
@@ -241,12 +253,6 @@ line-height: 20px; 133.333% */
   100% {
     --block-color: rgba(255, 255, 255, 1);
   }
-}
-
-.blocks-animate .block-center {
-  transition: transform ease-out 0.38s, opacity ease-out 0.38s;
-  transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
-  animation: block-center-bg ease-out 0.38s both;
 }
 
 
