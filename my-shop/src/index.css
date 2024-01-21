@@ -39,6 +39,16 @@ body::-webkit-scrollbar {
   width: 0.5em;
 }
 
+/* Для убирания полосок прокрутки внутри контейнера */
+::-webkit-scrollbar {
+  display: none; /* Для Chrome, Safari и Opera */
+}
+
+/* Для убирания полосок прокрутки внутри контейнера */
+scrollbar-width: none; /* Для Firefox */
+-ms-overflow-style: none; /* Для IE и Edge */
+
+
 body::-webkit-scrollbar-thumb {
   background-color: transparent;
 }

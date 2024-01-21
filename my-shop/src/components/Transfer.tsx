@@ -373,6 +373,10 @@ const Transfer = () => {
                     (You pay)
                   </span>
                   <div
+                    style={{
+                      scrollbarWidth: "none", // Для Firefox
+                      msOverflowStyle: "none", // Для IE и Edge
+                    }}
                     className={`flex flex-col gap-[10px] overflow-scroll min-h-[50px] ${
                       active ? "max-h-[140px]" : "max-h-[200px]"
                     }`}
