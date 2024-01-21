@@ -113,9 +113,37 @@ line-height: 20px; 133.333% */
 .fillgraph{
   background:linear-gradient(241deg, #3E3E3E 15.17%, #252525 88.46%);
 }
-.main div{
+
+@property --block-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgba(255, 255, 255, 0);
+}
+
+.block{
   height:7.351px;
-  background:linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0.00) 66.23%);
+  background: linear-gradient(270deg, #FFF 0%, var(--block-color) 66.23%);
+}
+
+/* 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.block {
+  animation: fadeOut 2s linear forwards;
+} */
+
+
+
+
+.block0{
+  width:83px;
 }
 .block1{
   width:83px;
@@ -188,6 +216,37 @@ line-height: 20px; 133.333% */
 }
 .block24{
   width:373px;
+}
+
+.blocks-animate .h1 span {
+  opacity: 1;
+  transition: opacity ease-out 0.5s;
+}
+
+.blocks-animate .h1 span.visible {
+  opacity: 0;
+  transition-delay: 0.5s;
+}
+
+.blocks-animate .block:not(.block-center) {
+  transition: transform ease-out 0.38s, opacity ease-out 0.38s;
+  transform: translateX(-373px);
+  opacity: 0;
+}
+
+@keyframes block-center-bg {
+  0% {
+    --block-color: rgba(255, 255, 255, 0);
+  }
+  100% {
+    --block-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.blocks-animate .block-center {
+  transition: transform ease-out 0.38s, opacity ease-out 0.38s;
+  transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
+  animation: block-center-bg ease-out 0.38s both;
 }
 
 
@@ -265,4 +324,25 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.rotate-image {
+  animation: rotate 2s linear infinite;
+}
+
+.success-shadow {
+  background: linear-gradient(194deg, rgba(233, 233, 233, 0.00) 64.6%, rgba(197, 255, 188, 0.78) 108.41%);
+}
+
+.error-shadow {
+background: linear-gradient(194deg, rgba(233, 233, 233, 0.00) 64.6%, rgba(255, 135, 135, 0.78) 108.41%);
 }

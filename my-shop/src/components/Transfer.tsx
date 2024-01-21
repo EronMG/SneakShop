@@ -15,6 +15,10 @@ import FullLogo from "../assets/FullLogo.svg";
 import Modal from "./Modal";
 import btc from "../assets/image5.svg";
 import bnb from "../assets/image15.svg";
+import confirm1 from "../assets/Processing.svg";
+import successImage from "../assets/Ok.svg";
+import errorImage from "../assets/NOT.svg";
+
 import { networkData } from "./Networks";
 
 const Transfer = () => {
@@ -28,7 +32,7 @@ const Transfer = () => {
   if (!sliderContext) {
     throw new Error("SliderContext not found");
   }
-
+  const [confirm, setConfirm] = useState(false);
   const [active, setActive] = useState(false);
   const { selectedId, selectedName } = networkContext!;
   const { isAnySliderAboveZero } = sliderContext!;
@@ -138,6 +142,69 @@ const Transfer = () => {
       dol: "($5,644.7815)",
     },
   ];
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    if (loading) {
+      // Ждем 2 секунды и затем меняем состояние
+      const timeout = setTimeout(() => {
+        setLoading(false);
+        setSuccess(Math.random() < 0.5); // 50% шанс успеха или неудачи
+      }, 2000);
+
+      // Очистка таймера при размонтировании компонента или изменении loading
+      return () => clearTimeout(timeout);
+    }
+  }, [loading]);
+
+  const handleConfirmClick = () => {
+    setLoading(true);
+  };
+
+  const getResultText = () => {
+    if (success === true) {
+      return "Completed";
+    } else if (success === false) {
+      return "Declined";
+    } else {
+      return "Confirm Swap";
+    }
+  };
+
+  const getResultTex2 = () => {
+    if (success === true) {
+      return "transaction completed";
+    } else if (success === false) {
+      return "transaction declined";
+    } else {
+      return "";
+    }
+  };
+
+  const getResultText3 = () => {
+    if (success === true) {
+      return "Transaction info";
+    } else if (success === false) {
+      return "Transaction info";
+    } else {
+      return "";
+    }
+  };
+
+  const handleLinkClick = (event: any) => {
+    event.preventDefault();
+    // Другие действия, которые вы хотите выполнить
+  };
+  const getShadowClass = () => {
+    if (success === true) {
+      return "success-shadow";
+    } else if (success === false) {
+      return "error-shadow";
+    } else {
+      return ""; // Если нет успешности или неудачи, можете оставить пустую строку или другой класс по умолчанию
+    }
+  };
   return (
     <div
       className={`  min-w-[564px] ${!isExpanded ? "min-h-[648px]" : "h-fit"} ${
@@ -290,9 +357,11 @@ const Transfer = () => {
               contentLabel="Example Modal"
               onRequestClose={closeModal}
             >
-              <div className="p-[15px] flex flex-col gap-[20px]">
+              <div
+                className={`p-[15px] flex flex-col gap-[20px] ${getShadowClass()}`}
+              >
                 <h2 className="font-gilMedium text-[50px] leading-[45px] text-black uppercase pt-[5px] pl-[5px]">
-                  confirm swap
+                  {getResultText()}
                 </h2>
                 <div className="flex flex-col gap-[20px] pl-[5px]">
                   <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
@@ -316,7 +385,7 @@ const Transfer = () => {
                     ))}
                   </div>
                 </div>
-                <div className="flex flex-col gap-[20px] pl-[4px]">
+                <div className={`flex flex-col gap-[20px] pl-[4px]`}>
                   <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                     (You receive)
                   </span>
@@ -328,7 +397,7 @@ const Transfer = () => {
                       37,748.2794
                     </p>
                   </div>
-                  <div className="flex items-end  gap-[23px] pt-[13px]">
+                  <div className={`flex items-end  gap-[23px] pt-[13px] `}>
                     <div className="h-[1px] bg-black w-[412px]" />
                     <p
                       className="font-mono font-[400] text-black text-[16px] leading-[16px] underline underline-offset-1 cursor-pointer"
@@ -338,7 +407,11 @@ const Transfer = () => {
                     </p>
                   </div>
                   <div className="flex flex-col gap-[15px] pt-[10px]">
-                    <div className="flex justify-between pl-[0px] overflow-scroll h-[68px]">
+                    <div
+                      className={` justify-between pl-[0px] overflow-scroll h-[68px]  ${
+                        loading || success !== null ? "hidden" : "flex"
+                      }`}
+                    >
                       <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                         (Rate)
                       </span>
@@ -370,7 +443,11 @@ const Transfer = () => {
                         </p>
                       </div>
                     )}
-                    <div className="flex justify-between pl-[0px]">
+                    <div
+                      className={`flex justify-between pl-[0px]  ${
+                        loading || success !== null ? "hidden" : "flex"
+                      }`}
+                    >
                       <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                         (Fee)
                       </span>
@@ -388,7 +465,36 @@ const Transfer = () => {
                         </p>
                       </div>
                     )}
-                    <div className="flex justify-between pl-[0px]">
+                    {loading && (
+                      <div className="flex items-center justify-center">
+                        {/* Картинка загрузки */}
+                        <img
+                          src={confirm1}
+                          alt="loading"
+                          className="w-[150px] h-[150px] rotate-image"
+                        />
+                      </div>
+                    )}
+
+                    {success !== null && !loading && (
+                      <div className="flex items-center justify-center gap-2">
+                        {/* Картинка "Успешно" или "Ошибка" */}
+                        <img
+                          src={success ? successImage : errorImage}
+                          alt={success ? "success" : "error"}
+                          className="w-[150px] h-[150px]"
+                        />
+                        <span className="text-black text-[40px] font-gilMedium uppercase w-[268px]">
+                          {" "}
+                          {getResultTex2()}
+                        </span>
+                      </div>
+                    )}
+                    <div
+                      className={`flex justify-between pl-[0px]  ${
+                        loading || success !== null ? "hidden" : "flex"
+                      }`}
+                    >
                       <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
                         (Network cost)
                       </span>
@@ -396,7 +502,21 @@ const Transfer = () => {
                         $22.5{" "}
                       </p>
                     </div>
-                    <button className="text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-center justify-center py-[40px] w-[534px] rounded-[30px]">
+
+                    <a
+                      href="https://etherscan.io/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-black text-[16px] font-mono font-[400] underline-offset-2 underline text-center"
+                    >
+                      {getResultText3()}
+                    </a>
+                    <button
+                      onClick={handleConfirmClick}
+                      className={`text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-center justify-center py-[40px] w-[534px] rounded-[30px]   ${
+                        loading || success !== null ? "hidden" : "flex"
+                      }`}
+                    >
                       confirm swap
                     </button>
                   </div>

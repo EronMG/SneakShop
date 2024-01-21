@@ -1,62 +1,71 @@
 import React from "react";
 import "../index.css";
+import { Link } from "react-router-dom";
 
 interface MainScreenProps {
-  from: number;
-  to: number;
+  size: number;
 }
-interface BlockProps {
-  className: string;
-}
-const Block: React.FC<BlockProps> = ({ className }) => {
-  return <div className={className}></div>;
+
+const Block = ({ size, className }: any) => {
+  const generateBlocks = React.useMemo(() => {
+    const center = Math.ceil(size / 2);
+    return Array.from({ length: size + 2 }, (_, index) => (
+      <div
+        key={index}
+        className={`block block${
+          index <= center ? index : center - (index - center)
+        } ${index === center ? "block-center" : ""}`}
+      ></div>
+    ));
+  }, [size]);
+
+  return <div className={className}>{generateBlocks}</div>;
 };
 
-const MemoizedBlock = React.memo(Block);
+const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
+  const [animate, setAnimate] = React.useState(false);
 
-const MainScreen: React.FC<MainScreenProps> = ({ from, to }) => {
-  const generateBlocks = React.useMemo(() => {
-    const blocks = [];
-
-    for (let i = from; i < to; i++) {
-      blocks.push(<MemoizedBlock key={i} className={`block${i}`} />);
-    }
-
-    return blocks;
-  }, [from, to]);
-  const generateBlocksMin = () => {
-    const blocks = [];
-
-    for (let i = 22; i > 0; i--) {
-      blocks.push(<div key={i} className={`block${i}`}></div>);
-    }
-
-    return blocks;
-  };
-  const Block = ({ className }: any) => {
-    return (
-      <div className={className}>
-        <div className="block1"></div>
-        <div className="block1"></div>
-        {generateBlocks}
-        {generateBlocksMin()}
-        <div className="block1"></div>
-        <div className="block1"></div>
-      </div>
-    );
+  const handleClick = () => {
+    setAnimate(true);
   };
 
   return (
-    <div className="flex justify-between items-center">
-      <Block className="main flex flex-col items-start gap-[10px]" />
+    <Link
+      to={`${animate === true ? "/profile" : ""}`}
+      className={`flex overflow-hidden justify-between items-center ${
+        animate && "blocks-animate"
+      }`}
+      onClick={handleClick}
+    >
+      <Block
+        size={size}
+        className="main flex flex-col items-start gap-[10px]"
+      />
+
       <div className="flex flex-col">
-        <h1 className="h1 w-[320px]">One button to stable all your funds</h1>
-        <p className="p top-[40px] relative flex justify-center">
+        <h1 className="h1 w-[320px]">
+          <span className={animate ? "visible" : ""}>One</span>{" "}
+          <span className={animate ? "visible" : ""}>button</span>{" "}
+          <span className={animate ? "visible" : ""}>to</span>{" "}
+          <span>stable</span>{" "}
+          <span className={animate ? "visible" : ""}>all</span>{" "}
+          <span className={animate ? "visible" : ""}>your</span>{" "}
+          <span className={animate ? "visible" : ""}>funds</span>
+        </h1>
+        <p
+          className={`p top-[40px] relative flex justify-center ${
+            animate && "opacity-0"
+          }`}
+        >
           (Connect your wallet to continue)
         </p>
       </div>
-      <Block className="main flex flex-col items-start gap-[10px] rotate-180" />
-    </div>
+
+      <Block
+        size={size}
+        className="main flex flex-col items-start gap-[10px] rotate-180"
+      />
+    </Link>
   );
 };
 
