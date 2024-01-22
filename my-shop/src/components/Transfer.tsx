@@ -371,7 +371,7 @@ const Transfer = () => {
               onRequestClose={closeModal}
             >
               <div
-                className={`p-[15px] flex flex-col gap-[20px] ${getShadowClass()}`}
+                className={`modal p-[15px] flex flex-col gap-[20px] ${getShadowClass()} `}
               >
                 <h2 className="font-gilMedium text-[50px] leading-[45px] text-black uppercase pt-[5px] pl-[5px]">
                   {getResultText()}
@@ -413,7 +413,7 @@ const Transfer = () => {
                   <div className={`flex items-end  gap-[23px] pt-[13px] `}>
                     <div className="h-[1px] bg-black w-[412px]" />
                     <p
-                      className="font-mono font-[400] text-black text-[16px] leading-[16px] underline underline-offset-1 cursor-pointer"
+                      className="smal font-mono font-[400] text-black text-[16px] leading-[16px] underline underline-offset-1 cursor-pointer"
                       onClick={handleActiveClick}
                     >
                       {active ? "Show less" : "Show more"}

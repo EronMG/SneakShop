@@ -422,3 +422,20 @@ background: linear-gradient(194deg, rgba(233, 233, 233, 0.00) 64.6%, rgba(255, 1
   opacity: 1;
   transform: translateX(0);
 }
+
+
+@media (max-height: 800px) {
+  .modal {
+    max-height: 720px;
+  }
+  .smal{
+    font-size:14px;
+  }
+}
+
+@media (max-height: 735px) {
+  .modal {
+    max-height: 620px;
+  }
+
+}
