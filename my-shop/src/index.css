@@ -40,9 +40,6 @@ body::-webkit-scrollbar {
 }
 
 /* Для убирания полосок прокрутки внутри контейнера */
-::-webkit-scrollbar {
-  display: none; /* Для Chrome, Safari и Opera */
-}
 
 /* Для убирания полосок прокрутки внутри контейнера */
 scrollbar-width: none; /* Для Firefox */
