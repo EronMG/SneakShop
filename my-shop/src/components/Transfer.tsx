@@ -210,6 +210,14 @@ const Transfer = () => {
   });
   const AnimatedImage = animated.img;
   const AnimatedText = animated.span;
+
+  useEffect(() => {
+    const isWindows = navigator.platform.indexOf("Win") > -1;
+    if (isWindows) {
+      document.body.classList.add("windows");
+    }
+  }, []);
+
   return (
     <div
       className={`  min-w-[564px] ${!isExpanded ? "min-h-[648px]" : "h-fit"} ${

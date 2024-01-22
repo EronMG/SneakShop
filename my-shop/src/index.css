@@ -30,48 +30,46 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background:black;
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: transparent transparent; /* Firefox */
-  overflow: -moz-scrollbars-none; /* Firefox */
 }
 
-body::-moz-scrollbar {
-  width: 0.5em;
-}
 
-/* Для убирания полосок прокрутки внутри контейнера */
-/* Скрыть горизонтальные полосы прокрутки */
-/* Скрыть горизонтальную полосу прокрутки */
-::-moz-scrollbar-horizontal {
-  display: none;
-}
-
-/* Скрыть блок под вертикальной полосой прокрутки */
-::-moz-scrollbar {
+/* Стилизация полосы прокрутки для WebKit (Chrome, Safari) и Firefox */
+::-webkit-scrollbar {
   width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-/* Стилизовать вертикальную полосу прокрутки */
-::-moz-scrollbar-thumb {
-  background-color: #a0a0a0; /* Цвет вертикальной полосы прокрутки */
-  border-radius: 6px; /* Закругление углов вертикальной полосы прокрутки */
+/* Стилизация полосы прокрутки для Firefox */
+scrollbar-width: thin;
+scrollbar-color: #a0a0a0 transparent;
+
+
+.windows ::-webkit-scrollbar {
+  width: 6px;
 }
 
-::-moz-scrollbar-track {
-  background-color: none; /* Цвет фона вертикальной полосы прокрутки */
+.windows ::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0;
+  border-radius: 6px;
 }
 
-
-
-
-body::-webkit-scrollbar-thumb {
+.windows ::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-body::-webkit-scrollbar-track {
-  background-color: transparent;
+.windows {
+  scrollbar-width: thin;
+  scrollbar-color: #a0a0a0 transparent;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

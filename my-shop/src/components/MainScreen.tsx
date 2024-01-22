@@ -1,6 +1,5 @@
 import React from "react";
 import "../index.css";
-import { Link } from "react-router-dom";
 
 interface MainScreenProps {
   size: number;
