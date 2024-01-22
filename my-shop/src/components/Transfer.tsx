@@ -529,7 +529,7 @@ const Transfer = () => {
                     </a>
                     <button
                       onClick={handleConfirmClick}
-                      className={`text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-center justify-center py-[40px] w-[534px] rounded-[30px]   ${
+                      className={` text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-center justify-center py-[40px] w-[524px] rounded-[30px]   ${
                         loading || success !== null ? "hidden" : "flex"
                       }`}
                     >
