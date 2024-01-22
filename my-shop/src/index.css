@@ -263,12 +263,22 @@ line-height: 20px; 133.333% */
 
 .blocks-animate .h1 span {
   opacity: 1;
-  transition: opacity ease-out 0.5s;
+  transition: opacity ease-out 1s;
 }
 
 .blocks-animate .h1 span.visible {
   opacity: 0;
-  transition-delay: 0.5s;
+  transition-delay: 0s;
+}
+
+.div {
+  opacity: 1;
+  transition: opacity ease-out 1s;
+}
+
+.div.visible {
+  opacity: 0;
+  transition-delay: 0s;
 }
 
 

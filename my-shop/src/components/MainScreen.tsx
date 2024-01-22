@@ -1,5 +1,6 @@
 import React from "react";
 import "../index.css";
+import { SliderContext } from "../context/Slider";
 
 interface MainScreenProps {
   size: number;
@@ -22,7 +23,14 @@ const Block = ({ size, className }: any) => {
 };
 
 const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
-  const [animate, setAnimate] = React.useState(false);
+  const context = React.useContext(SliderContext);
+
+  if (!context) {
+    return null;
+  }
+
+  // Уточнение типа
+  const { animate, setAnimate } = context;
 
   const handleClick = () => {
     // Set animate to true
