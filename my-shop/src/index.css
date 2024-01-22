@@ -284,8 +284,8 @@ line-height: 20px; 133.333% */
   -webkit-transition: -webkit-transform ease-out 0.38s, opacity ease-out 0.38s;
   -moz-transition: -moz-transform ease-out 0.38s, opacity ease-out 0.38s;
   transition: transform ease-out 0.38s, opacity ease-out 0.38s;
-  -webkit-transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
-  -moz-transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
+  -webkit-transform: translateX(calc((100vw - 890px) / 2)) scaleX(0.025) scaleY(4);
+  -moz-transform: translateX(calc((100vw - 890px) / 2)) scaleX(0.025) scaleY(4);
   transform: translateX(calc((100vw - 870px) / 2)) scaleX(0.025) scaleY(4);
   opacity: 1;
   -webkit-animation: block-center-bg ease-out 0.38s both;
