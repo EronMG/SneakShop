@@ -147,7 +147,7 @@ line-height: 20px; 133.333% */
 
 .block{
   height:7.351px;
-  background: linear-gradient(270deg, #FFF 0%, var(--block-color) 66.23%);
+  background: linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0) 66.23%);
 }
 
 /* 
@@ -274,6 +274,7 @@ line-height: 20px; 133.333% */
   opacity: 1;
   -webkit-animation: block-center-bg ease-out 0.38s both;
   animation: block-center-bg ease-out 0.38s both;
+  background:white;
 }
 
 
