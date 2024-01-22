@@ -40,6 +40,28 @@ body::-webkit-scrollbar {
 }
 
 /* Для убирания полосок прокрутки внутри контейнера */
+/* Скрыть горизонтальные полосы прокрутки */
+/* Скрыть горизонтальную полосу прокрутки */
+::-webkit-scrollbar-horizontal {
+  display: none;
+}
+
+/* Скрыть блок под вертикальной полосой прокрутки */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+}
+
+/* Стилизовать вертикальную полосу прокрутки */
+::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0; /* Цвет вертикальной полосы прокрутки */
+  border-radius: 6px; /* Закругление углов вертикальной полосы прокрутки */
+}
+
+::-webkit-scrollbar-track {
+  background-color: none; /* Цвет фона вертикальной полосы прокрутки */
+}
+
 
 /* Для убирания полосок прокрутки внутри контейнера */
 scrollbar-width: none; /* Для Firefox */
