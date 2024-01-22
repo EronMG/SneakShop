@@ -306,7 +306,7 @@ const Transfer = () => {
                 )}
               </div>
               {isExpandedToken && (
-                <div className="expanded-content bg- rounded-[20px] px-[20px] py-[30px] flex flex-wrap gap-[10px] bg-white">
+                <div className="expanded-content  rounded-[20px] px-[20px] py-[30px] flex flex-wrap gap-[10px] bg-white">
                   {currencies.map((item, index) => (
                     <p
                       key={index}
@@ -373,10 +373,6 @@ const Transfer = () => {
                     (You pay)
                   </span>
                   <div
-                    style={{
-                      scrollbarWidth: "none", // Для Firefox
-                      msOverflowStyle: "none", // Для IE и Edge
-                    }}
                     className={`flex flex-col gap-[10px] overflow-scroll min-h-[50px] ${
                       active ? "max-h-[140px]" : "max-h-[200px]"
                     }`}
@@ -417,11 +413,7 @@ const Transfer = () => {
                   </div>
                   <div className="flex flex-col gap-[15px] pt-[10px]">
                     <div
-                      style={{
-                        scrollbarWidth: "none", // Для Firefox
-                        msOverflowStyle: "none", // Для IE и Edge
-                      }}
-                      className={` justify-between pl-[0px] overflow-scroll h-[68px]  ${
+                      className={`justify-between pl-[0px] overflow-scroll h-[68px]  ${
                         loading || success !== null ? "hidden" : "flex"
                       }`}
                     >

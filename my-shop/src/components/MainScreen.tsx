@@ -33,7 +33,7 @@ const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
     setTimeout(() => {
       // Navigate to "/profile" after 2 seconds
       window.location.href = "/profile";
-    }, 2000);
+    }, 1000);
   };
 
   return (
