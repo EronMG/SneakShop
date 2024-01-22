@@ -32,6 +32,10 @@ body {
   background:black;
 }
 
+.with-scrollbar-styles {
+  overflow-y: scroll; /* Включение вертикальной полосы прокрутки */
+  overflow-x: hidden; /* Отключение горизонтальной полосы прокрутки */
+}
 
 /* Стилизация полосы прокрутки для WebKit (Chrome, Safari) и Firefox */
 ::-webkit-scrollbar {
