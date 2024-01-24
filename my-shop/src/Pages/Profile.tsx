@@ -44,23 +44,25 @@ const Profile = () => {
   return (
     <SliderProvider>
       <NetworkProvider>
-        <div className={`fade-in ${isActive ? "active" : ""}`}>
-          <Nav />
-          <div className="px-[15px] flex flex-col gap-[15px] ">
-            <div className="flex justify-between">
-              {" "}
-              <Wallet
-                walletTitle={"WALLET:"}
-                walletAddress={"0xE07eA.....519BF"}
-                changeWalletText={"Change main wallet"}
-                addWalletText={"Add wallet"}
-              />
-              <Funds />
-            </div>
-            <Networks netTitle={"networks"} />
-            <div className="fillport flex justify-between rounded-[30px] min-h-[648px] pb-[20px] mb-[20px]">
-              <Portfolio />
-              <Transfer />
+        <div className="flex justify-center w-full">
+          <div className={`fade-in ${isActive ? "active" : ""} max-w-[1440px]`}>
+            <Nav />
+            <div className="px-[15px] flex flex-col gap-[15px] ">
+              <div className="flex justify-between">
+                {" "}
+                <Wallet
+                  walletTitle={"WALLET:"}
+                  walletAddress={"0xE07eA.....519BF"}
+                  changeWalletText={"Change main wallet"}
+                  addWalletText={"Add wallet"}
+                />
+                <Funds />
+              </div>
+              <Networks netTitle={"networks"} />
+              <div className="fillport flex justify-between rounded-[30px] min-h-[648px] pb-[20px] mb-[20px]">
+                <Portfolio />
+                <Transfer />
+              </div>
             </div>
           </div>
         </div>
