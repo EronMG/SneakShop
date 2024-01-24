@@ -1,6 +1,7 @@
 import React from "react";
 import "../index.css";
 import { SliderContext } from "../context/Slider";
+import { Link } from "react-router-dom";
 
 interface MainScreenProps {
   size: number;
@@ -40,7 +41,7 @@ const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
     setTimeout(() => {
       // Navigate to "/profile" after 2 seconds
       window.location.href = "/profile";
-    }, 1000);
+    }, 1800);
   };
 
   return (
