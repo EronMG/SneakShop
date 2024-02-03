@@ -38,7 +38,7 @@ const Portfolio: React.FC = () => {
       id: "1",
       icon: require("../assets/image5.svg").default,
       name: "Bitcoin (BTC)",
-      cost: 0.0201,
+      cost: 0.0203,
     },
     {
       id: "2",
@@ -247,13 +247,13 @@ const Portfolio: React.FC = () => {
                 className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[40px] md:gap-[80px]"
               >
                 <div className="flex items-center gap-[10px]">
-                  <img src={item.icon} alt="" />
+                  <img src={item.icon} alt="" className="rounded-full" />
                   <div className="flex flex-col gap-[8px] justify-center">
                     <h2 className="font-mono font-[400] text-rgba text-[12px] leading-[12.028px] relative top-[7.5px] w-[126px]">
                       {item.name}
                     </h2>
                     <span className="font-gilMedium leading-[40px] text-[30px] text-white uppercase">
-                      {item.cost}
+                      {item.cost.toFixed(4)}
                     </span>
                   </div>
                 </div>
@@ -297,7 +297,10 @@ const Portfolio: React.FC = () => {
                   >
                     <input
                       type="number"
-                      value={((sliderValues[item.id] || 0) / 100) * item.cost}
+                      value={(
+                        ((sliderValues[item.id] || 0) / 100) *
+                        item.cost
+                      ).toFixed(4)}
                       onChange={(e) =>
                         handleInputValueChange(
                           parseFloat(e.target.value),
@@ -306,13 +309,13 @@ const Portfolio: React.FC = () => {
                       }
                       min={0}
                       max={item.cost}
-                      step={0.00001}
+                      step={0.0001}
                       className={`bg-transparent outline-none text-rgba w-[157px] ${
                         sliderValues[item.id] > 0 ? "text-white" : ""
                       }`}
                       style={{
                         paddingRight: "0.5em",
-                        MozAppearance: "textfield", // Добавляем вендорный префикс для Firefox
+                        MozAppearance: "textfield",
                       }}
                     />
                   </p>
