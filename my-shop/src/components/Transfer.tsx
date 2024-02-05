@@ -89,6 +89,7 @@ const Transfer = () => {
 
   function closeModal() {
     setIsOpen(false);
+    setActive(false);
   }
   const handleBlockClick = () => setExpanded(!isExpanded);
   const handleBlockClickToken = () => setExpandedToken(!isExpandedToken);
@@ -143,6 +144,7 @@ const Transfer = () => {
       dol: "($5,644.7815)",
     },
   ];
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<boolean | null>(null);
 
@@ -538,11 +540,14 @@ const Transfer = () => {
                     </a>
                     <button
                       onClick={handleConfirmClick}
-                      className={` text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-center justify-center py-[40px] w-[524px] rounded-[30px]   ${
+                      className={` text-white font-gilMedium text-[40px] leading-[40px] uppercase bg-black flex items-end justify-center py-[40px] w-[524px] rounded-[30px]   ${
                         loading || success !== null ? "hidden" : "flex"
                       }`}
                     >
-                      confirm swap
+                      approve
+                      <span className="text-gray-400 text-base pl-2">
+                        (BTC)
+                      </span>
                     </button>
                   </div>
                 </div>
