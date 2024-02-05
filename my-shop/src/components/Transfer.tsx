@@ -90,6 +90,7 @@ const Transfer = () => {
   function closeModal() {
     setIsOpen(false);
     setActive(false);
+    setSuccess(null);
   }
   const handleBlockClick = () => setExpanded(!isExpanded);
   const handleBlockClickToken = () => setExpandedToken(!isExpandedToken);
