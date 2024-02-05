@@ -37,10 +37,14 @@ body {
   overflow-x: hidden; /* Отключение горизонтальной полосы прокрутки */
 }
 
-/* Стилизация полосы прокрутки для WebKit (Chrome, Safari) и Firefox */
-::-webkit-scrollbar {
-  width: 6px;
+.bg{
+  overflow-x: scroll; /* Включить горизонтальный скролл для всего body */
+      scrollbar-color: transparent transparent; /* Настроить цвет полосы прокрутки на прозрачный (поддерживается не во всех браузерах) */
+      scrollbar-width: thin; 
 }
+.bg::-webkit-scrollbar-thumb {
+      background-color: red; /* Цвет горизонтального скролла */
+    }
 
 ::-webkit-scrollbar-thumb {
   background-color: #a0a0a0;
@@ -50,10 +54,6 @@ body {
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
-
-/* Стилизация полосы прокрутки для Firefox */
-scrollbar-width: thin;
-scrollbar-color: #a0a0a0 transparent;
 
 
 .windows ::-webkit-scrollbar {

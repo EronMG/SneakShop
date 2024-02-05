@@ -10,6 +10,7 @@ import Transfer from "../components/Transfer";
 import { Link } from "react-router-dom";
 import { SliderProvider } from "../context/Slider";
 import Funds from "../components/Funds";
+
 const Nav = () => {
   return (
     <div className="flex pt-[21px] pb-[19px] justify-between px-[30px]">
@@ -44,7 +45,7 @@ const Profile = () => {
   return (
     <SliderProvider>
       <NetworkProvider>
-        <div className="flex justify-center w-full">
+        <div className="bg flex justify-center w-full">
           <div className={`fade-in ${isActive ? "active" : ""} max-w-[1440px]`}>
             <Nav />
             <div className="px-[15px] flex flex-col gap-[15px] ">
