@@ -506,18 +506,20 @@ const Transfer = () => {
                         </AnimatedText>
                       </div>
                     )}
-                    <div
-                      className={`flex justify-between pl-[0px]  ${
-                        loading || success !== null ? "hidden" : "flex"
-                      }`}
-                    >
-                      <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        (Network cost)
-                      </span>
-                      <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
-                        $22.5{" "}
-                      </p>
-                    </div>
+                    {active && (
+                      <div
+                        className={`flex justify-between pl-[0px]  ${
+                          loading || success !== null ? "hidden" : "flex"
+                        }`}
+                      >
+                        <span className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          (Network cost)
+                        </span>
+                        <p className="text-rgbablack text-[16px] leading-[16px] font-mono font-[400]">
+                          $22.5{" "}
+                        </p>
+                      </div>
+                    )}
 
                     <a
                       href="https://etherscan.io/"

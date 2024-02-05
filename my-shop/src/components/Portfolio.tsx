@@ -56,7 +56,7 @@ const Portfolio: React.FC = () => {
       id: "4",
       icon: require("../assets/Group31.svg").default,
       name: "Solana (SOL)",
-      cost: 2.35,
+      cost: 42422.35,
     },
     {
       id: "5",
@@ -244,7 +244,7 @@ const Portfolio: React.FC = () => {
             {cryptArr.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#464646] rounded-[30px] px-[10px] flex gap-[40px] md:gap-[80px]"
+                className="bg-[#464646] rounded-[30px] px-[10px] flex justify-between md:gap-[80px]"
               >
                 <div className="flex items-center gap-[10px]">
                   <img src={item.icon} alt="" className="rounded-full" />
@@ -253,7 +253,7 @@ const Portfolio: React.FC = () => {
                       {item.name}
                     </h2>
                     <span className="font-gilMedium leading-[40px] text-[30px] text-white uppercase">
-                      {item.cost.toFixed(4)}
+                      {item.cost.toFixed(6)}
                     </span>
                   </div>
                 </div>
@@ -300,7 +300,7 @@ const Portfolio: React.FC = () => {
                       value={(
                         ((sliderValues[item.id] || 0) / 100) *
                         item.cost
-                      ).toFixed(4)}
+                      ).toFixed(6)}
                       onChange={(e) =>
                         handleInputValueChange(
                           parseFloat(e.target.value),
