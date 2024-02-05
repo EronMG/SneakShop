@@ -19,6 +19,7 @@ import bnb from "../assets/image15.svg";
 import confirm1 from "../assets/Processing.svg";
 import successImage from "../assets/Ok.svg";
 import errorImage from "../assets/NOT.svg";
+import CLOSE from "../assets/CLOSE.svg";
 
 import { networkData } from "./Networks";
 
@@ -373,6 +374,12 @@ const Transfer = () => {
               <div
                 className={`modal p-[15px] flex flex-col gap-[20px] ${getShadowClass()} `}
               >
+                <img
+                  src={CLOSE}
+                  alt="icon"
+                  className="w-6 h-6 absolute right-7 top-8 cursor-pointer"
+                  onClick={closeModal}
+                />
                 <h2 className="font-gilMedium text-[50px] leading-[45px] text-black uppercase pt-[5px] pl-[5px]">
                   {getResultText()}
                 </h2>
