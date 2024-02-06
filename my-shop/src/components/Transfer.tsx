@@ -20,7 +20,7 @@ import confirm1 from "../assets/Processing.svg";
 import successImage from "../assets/Ok.svg";
 import errorImage from "../assets/NOT.svg";
 import CLOSE from "../assets/CLOSE.svg";
-
+import { IoCheckmarkOutline } from "react-icons/io5";
 import { networkData } from "./Networks";
 
 const Transfer = () => {
@@ -91,6 +91,7 @@ const Transfer = () => {
     setIsOpen(false);
     setActive(false);
     setSuccess(null);
+    setColors([]);
   }
   const handleBlockClick = () => setExpanded(!isExpanded);
   const handleBlockClickToken = () => setExpandedToken(!isExpandedToken);
@@ -221,6 +222,16 @@ const Transfer = () => {
       document.body.classList.add("windows");
     }
   }, []);
+
+  const [colors, setColors] = useState(Array(arr.length).fill("")); // Изначально все цвета пустые
+
+  const handleColorChange = (index: any) => {
+    if (!colors[index]) {
+      const newColors = [...colors];
+      newColors[index] = Math.random() > 0.5 ? "green" : "red";
+      setColors(newColors);
+    }
+  };
 
   return (
     <div
@@ -391,7 +402,7 @@ const Transfer = () => {
                     (You pay)
                   </span>
                   <div
-                    className={`flex flex-col gap-[10px] overflow-scroll min-h-[50px] ${
+                    className={`flex relative flex-col gap-[10px] overflow-scroll min-h-[50px] ${
                       active ? "max-h-[140px]" : "max-h-[200px]"
                     }`}
                   >
@@ -404,6 +415,16 @@ const Transfer = () => {
                         <span className="text-rgbablack font-mono font-[400] text-[16px] leading-[16px]">
                           {item.dol}
                         </span>
+                        <div
+                          onClick={() => handleColorChange(index)}
+                          className={`absolute gradient w-[154px] h-9 rounded-[50px] right-10 ${colors[index]}`}
+                        >
+                          {colors[index] === "green" ? (
+                            <IoCheckmarkOutline className="absolute right-2 top-[6px] text-2xl" />
+                          ) : (
+                            <div className="bg-[#E9E9E9] w-6 h-6 rounded-full absolute top-[6px] right-2" />
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>

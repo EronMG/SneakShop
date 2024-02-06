@@ -74,6 +74,18 @@ body {
   scrollbar-color: #a0a0a0 transparent;
 }
 
+.gradient{
+background-image: linear-gradient(to right, rgba(233, 233, 233, 0.1) 40%, rgba(0, 0, 0, 0.1));
+
+}
+
+.green{
+background-image: linear-gradient(to right, rgba(233, 233, 233, 0.1) 40%, rgba(139, 215, 120, 0.4));
+}
+
+.red{
+background-image: linear-gradient(to right, rgba(233, 233, 233, 0.1) 40%, rgba(255, 0, 0, 0.4));
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -123,30 +135,6 @@ line-height: 12.028px;
 }
 
 
-/* .sfill .ant-slider-mark-text {
-color: rgba(255, 255, 255, 0.60);
-text-align: right;
-leading-trim: both;
-text-edge: cap;
-font-family: GilroyMedium;
-font-size: 15px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; 133.333% */
-/* text-transform: uppercase;
-} */
-
-/* Перемещаем метки наверх */
-/* .sfill .ant-slider-mark {
-  top: -20px; 
-  bottom: auto; 
-} */
-
-/* Переопределяем стили для меток слайдера, чтобы они были лучше видны наверху */
-/* .sfill .ant-slider-mark-text {
-  transform: translateX(-50%) translateY(-100%); /* центрируем метки горизонтально и перемещаем их наверх */
-
-
 .fillport{
   background:linear-gradient(241deg, #3E3E3E 15.17%, #252525 88.46%);
 }
@@ -167,22 +155,6 @@ line-height: 20px; 133.333% */
   height:7.351px;
   background: linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0) 66.23%);
 }
-
-/* 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.block {
-  animation: fadeOut 2s linear forwards;
-} */
-
-
 
 
 .block0{
