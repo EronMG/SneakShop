@@ -13,6 +13,8 @@ interface SliderContextType {
   setActiveSlider: (sliderData: SliderData | null) => void;
   animate: boolean;
   setAnimate: (value: boolean) => void;
+  visible: boolean;
+  setVisible: (value: boolean) => void;
 }
 
 export const SliderContext = createContext<SliderContextType | undefined>(
@@ -25,6 +27,7 @@ export const SliderProvider: React.FC<{ children: ReactNode }> = ({
   const [isAnySliderAboveZero, setAnySliderAboveZero] =
     useState<boolean>(false);
   const [animate, setAnimate] = useState<boolean>(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const [activeSlider, setActiveSlider] = useState<SliderData | null>(null);
 
   return (
@@ -36,6 +39,8 @@ export const SliderProvider: React.FC<{ children: ReactNode }> = ({
         setActiveSlider,
         animate,
         setAnimate,
+        visible,
+        setVisible,
       }}
     >
       {children}

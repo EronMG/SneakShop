@@ -1,7 +1,6 @@
 import React from "react";
 import "../index.css";
 import { SliderContext } from "../context/Slider";
-import { Link } from "react-router-dom";
 
 interface MainScreenProps {
   size: number;
@@ -22,7 +21,6 @@ const Block = ({ size, className }: any) => {
 
   return <div className={className}>{generateBlocks}</div>;
 };
-
 const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
   const context = React.useContext(SliderContext);
 
@@ -31,7 +29,7 @@ const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
   }
 
   // Уточнение типа
-  const { animate, setAnimate } = context;
+  const { animate, setAnimate, setVisible } = context;
 
   const handleClick = () => {
     // Set animate to true
@@ -39,8 +37,7 @@ const MainScreen: React.FC<MainScreenProps> = ({ size }) => {
 
     // Delay the navigation by 2 seconds
     setTimeout(() => {
-      // Navigate to "/profile" after 2 seconds
-      window.location.href = "/profile";
+      setVisible(true);
     }, 1800);
   };
 

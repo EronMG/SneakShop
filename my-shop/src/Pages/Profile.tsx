@@ -10,6 +10,7 @@ import Transfer from "../components/Transfer";
 import { Link } from "react-router-dom";
 import { SliderProvider } from "../context/Slider";
 import Funds from "../components/Funds";
+import { SliderContext } from "../context/Slider";
 
 const Nav = () => {
   return (
@@ -30,6 +31,8 @@ const Nav = () => {
   );
 };
 const Profile = () => {
+  const context = React.useContext(SliderContext);
+
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -41,11 +44,19 @@ const Profile = () => {
     // Clear the timeout on component unmount
     return () => clearTimeout(delay);
   }, []);
-
+  if (!context) {
+    return null;
+  }
+  // Уточнение типа
+  const { visible } = context;
   return (
     <SliderProvider>
       <NetworkProvider>
-        <div className="bg flex justify-center w-full">
+        <div
+          className={`bg flex justify-center w-full duration-300 ${
+            visible === true ? " opacity-100" : " opacity-0"
+          }`}
+        >
           <div className={`fade-in ${isActive ? "active" : ""} max-w-[1440px]`}>
             <Nav />
             <div className="px-[15px] flex flex-col gap-[15px] ">
